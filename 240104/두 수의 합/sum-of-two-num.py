@@ -1,11 +1,15 @@
 from itertools import combinations
 
 n, k = map(int, input().split())
-arr = [int(i) for i in input().split()]
+arr = {}
+c = 0
+for i in input().split():
+    arr[c] = int(i)
+    c += 1
 
-select = list(combinations(arr, 2))
 cnt = 0
-for x, y in select:
-    if (x+y == k):
-        cnt += 1
+for i in range(n):
+    for j in range(i, n):
+        if arr[i] + arr[j] == k:
+            cnt += 1
 print(cnt)
