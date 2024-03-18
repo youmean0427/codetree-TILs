@@ -33,7 +33,7 @@ def check_balls(count):
     global ans
     for x in range(len(count)):
         for y in range(len(count)):
-            if count[x][y] > 2:
+            if count[x][y] >= 2:
                 count[x][y] = 0
             elif count[x][y] == 1:
                 ans += 1
