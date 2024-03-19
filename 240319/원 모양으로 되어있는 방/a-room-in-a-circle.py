@@ -11,7 +11,7 @@ for _ in range(n):
 ans = float('inf')
 for i in range(n):
     total = 0
-    arr.rotate(-i)
+    arr.rotate(-1)
     for j in range(n):
         total += arr[j] * j
     ans = min(ans, total)
