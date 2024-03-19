@@ -2,12 +2,15 @@ import sys
 # sys.stdin = open("input.txt", 'r')
 input = sys.stdin.readline
 
-s = list(map(int, input()))
+s = list(map(int, input().rstrip()))
 
-for i in range(len(s)):
-    if s[i] == 0:
-        s[i] = 1
-        break
+if len(s) == 1:
+    s[0] = 0
+else:
+    for i in range(len(s)):
+        if s[i] == 0:
+            s[i] = 1
+            break
 
 def two_to_ten(arr):
     idx = len(arr)-1
