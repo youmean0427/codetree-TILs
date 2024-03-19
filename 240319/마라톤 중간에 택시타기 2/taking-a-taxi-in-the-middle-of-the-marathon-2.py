@@ -18,10 +18,7 @@ def dfs(idx, sm, select, jump):
             ans = min(ans, sm)
         return
 
-    if idx == 1:
-        dfs(idx+1, sm+abs(select[-1][0]-arr[idx][0]) + abs(select[-1][1] - arr[idx][1]), select+[arr[idx]], jump)
-        dfs(idx+1, sm, select, jump+1)
-    elif jump:
+    if jump:
         dfs(idx+1, sm+abs(select[-1][0]-arr[idx][0]) + abs(select[-1][1] - arr[idx][1]), select+[arr[idx]], jump)
     else:
         dfs(idx+1, sm+abs(select[-1][0]-arr[idx][0]) + abs(select[-1][1] - arr[idx][1]), select+[arr[idx]], jump)
