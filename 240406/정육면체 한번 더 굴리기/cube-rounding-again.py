@@ -87,22 +87,21 @@ def dice_move(start):
     degree_rclock = {"R": "U", "D": "R", "L": "D", "U": "L"}
     ans = 0
     idx = 0
+
     while idx < M and stack:
         x, y = stack.pop()
-        if x == 0 and y == 0:
-            dn, dm = dirs[dir]
-            dnx, dmy = dn + x, dm + y
-            if 0 <= dnx < N and 0 <= dmy < N:
-                bottom = dice[bottom][front][dir]
-                stack.append((dnx, dmy))
-                ans += near(dnx, dmy)
-                idx += 1
-            continue
+        # if x == 0 and y == 0 and start_point == 1:
+        #     dn, dm = dirs[dir]
+        #     dnx, dmy = dn + x, dm + y
+        #     if 0 <= dnx < N and 0 <= dmy < N:
+        #         bottom = dice[bottom][front][dir]
+        #         stack.append((dnx, dmy))
+        #         ans += near(dnx, dmy)
+        #         idx += 1
+        #         start_point = 0
+        #     continue
 
-        if bottom > arr[x][y]:
-            dir = degree_clock[dir]
-        elif bottom < arr[x][y]:
-            dir = degree_rclock[dir]
+
 
         dn, dm = dirs[dir]
         dnx, dmy = dn + x, dm + y
@@ -130,6 +129,11 @@ def dice_move(start):
                 front = cop[old_bottom]
 
             ans += near(dnx, dmy)
+
+        if bottom > arr[dnx][dmy]:
+            dir = degree_clock[dir]
+        elif bottom < arr[dnx][dmy]:
+            dir = degree_rclock[dir]
 
         idx += 1
     return ans
