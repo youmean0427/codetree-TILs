@@ -1,4 +1,6 @@
 import sys
+
+# sys.stdin = open("input.txt", 'r')
 input = sys.stdin.readline
 
 dice = {6: {2: {"R": 3, "U": 5, "D": 2, "L": 4},
@@ -56,13 +58,23 @@ def near(nx, ny):
     return total
 
 
-def reflect(rx, ry, rd):
+def reflect(rx, ry, rd, bottom, front):
     re_dir = {"R": "L", "L": "R", "U": "D", "D": "U"}
-    re_rd = re_dir[rd]
+    re_rd = re_dir[rd] # RLUD
+
     dn, dm = dirs[re_rd]
     rxdn, rydm = rx + dn, ry + dm
 
-    return (rxdn, rydm, re_rd)
+    old_bottom = bottom
+    re_bt = dice[bottom][front][re_rd]
+    if re_rd == "U":
+        re_fr = old_bottom
+    elif re_rd == "D":
+        re_fr = cop[old_bottom]
+    else:
+        re_fr = front
+
+    return (rxdn, rydm, re_rd, re_bt, re_fr)
 
 
 def dice_move(start):
@@ -75,8 +87,7 @@ def dice_move(start):
     degree_rclock = {"R": "U", "D": "R", "L": "D", "U": "L"}
     ans = 0
     idx = 0
-    while idx < M:
-
+    while idx < M and stack:
         x, y = stack.pop()
         if x == 0 and y == 0:
             dn, dm = dirs[dir]
@@ -108,7 +119,7 @@ def dice_move(start):
             ans += near(dnx, dmy)
 
         else:
-            dnx, dmy, dir = reflect(x, y, dir)
+            dnx, dmy, dir, bottom, front = reflect(x, y, dir, bottom, front)
             stack.append((dnx, dmy))
 
             old_bottom = bottom
@@ -119,6 +130,7 @@ def dice_move(start):
                 front = cop[old_bottom]
 
             ans += near(dnx, dmy)
+
         idx += 1
     return ans
 
