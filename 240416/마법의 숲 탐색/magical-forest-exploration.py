@@ -1,5 +1,6 @@
 # import sys
 # sys.stdin = open("input.txt", 'r')
+# from pprint import pprint
 
 
 #  -1 -1 -1 0 -1, 1
@@ -74,30 +75,34 @@ def right_can_go(r, c, e, flag):
 
 
 
+
+
+
 # 가운데를 기준으로
 def down_move(r, c, e, flag): # 행, 열, 출구
+    global did
     global start
     # r, c랑 같으면 이동 못함
     move_r, move_c = down_can_go(r, c, e)
-    if move_r == R+1:
-        arr[move_r][move_c] = 3
-        start = [move_r, move_c]
-        for tn, tm in ten:
-            arr[move_r + tn][move_c + tm] = 1
-        arr[dir[e][0] + move_r][dir[e][1] + move_c] = 2
-        return
-
+    # if move_r == R+1:
+    #     arr[move_r][move_c] = 3
+    #     start = [move_r, move_c]
+    #     for tn, tm in ten:
+    #         arr[move_r + tn][move_c + tm] = 1
+    #     arr[dir[e][0] + move_r][dir[e][1] + move_c] = 2
+    #     return
+    # pprint(arr)
     if move_r == r and move_c == c:
-         if left_can_go(r, c, e, flag) == False:
-             if flag > 1:
-                 arr[move_r][move_c] = 3
-                 start = [move_r, move_c]
-                 for tn, tm in ten:
-                     arr[move_r + tn][move_c + tm] = 1
-                 arr[dir[e][0] + move_r][dir[e][1] + move_c] = 2
-             return
-         else:
-             left_can_go(r, c, e, flag+1)
+        if left_can_go(r, c, e, flag) == False and did == 0:
+            arr[move_r][move_c] = 3
+            start = [move_r, move_c]
+            for tn, tm in ten:
+                 arr[move_r + tn][move_c + tm] = 1
+            arr[dir[e][0] + move_r][dir[e][1] + move_c] = 2
+            did = 1
+            return
+        else:
+            left_can_go(r, c, e, flag+1)
     else:
         down_move(move_r, move_c, e, flag+1)
 
@@ -154,15 +159,18 @@ start = [0, 0]
 ans = 0
 res = 0
 for _ in range(K):
-
+    did = 0
     col, ex = map(int, input().split())
     # col번째 행에서 내려옴
     # 중간이 기준
     # print(col-1)
     down_move(1, col-1, ex, 1)
 
-    arr, y = out_of_range(arr)
     # pprint(arr)
+    arr, y = out_of_range(arr)
+    # print(col, ex)
+
+    # print("-----")
 
     if y:
         res += dfs(start)
