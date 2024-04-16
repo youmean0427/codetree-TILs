@@ -1,6 +1,7 @@
 # import sys
 # sys.stdin = open("input.txt", 'r')
-from pprint import pprint
+# from pprint import pprint
+from collections import deque
 
 
 #  -1 -1 -1 0 -1, 1
@@ -81,6 +82,7 @@ def right_can_go(r, c, e, flag):
 # 가운데를 기준으로
 def down_move(r, c, e, flag): # 행, 열, 출구
     global did
+    global cnt
     global start
     # r, c랑 같으면 이동 못함
     move_r, move_c = down_can_go(r, c, e)
@@ -94,12 +96,14 @@ def down_move(r, c, e, flag): # 행, 열, 출구
     # pprint(arr)
     if move_r == r and move_c == c:
         if left_can_go(r, c, e, flag) == False and did == 0:
-            arr[move_r][move_c] = 3
+            arr[move_r][move_c] = cnt
             start = [move_r, move_c]
             for tn, tm in ten:
-                 arr[move_r + tn][move_c + tm] = 1
-            arr[dir[e][0] + move_r][dir[e][1] + move_c] = 2
+                 arr[move_r + tn][move_c + tm] = cnt
+            arr[dir[e][0] + move_r][dir[e][1] + move_c] = cnt
+            exit_arr[dir[e][0] + move_r][dir[e][1] + move_c] = 1
             did = 1
+            cnt += 1
             return
         else:
             left_can_go(r, c, e, flag+1)
@@ -110,45 +114,30 @@ def down_move(r, c, e, flag): # 행, 열, 출구
 def dfs(start):
     global ans
     # print(start)
-    stack = [(start[0], start[1], 0)]
-    visited = [[0] * C for _ in range(R + 3)]
-    max_val = 0
-    while stack:
+    result = 0
+    q = deque([(start[0], start[1])])
+    visited = [[0] * C for _ in range(R+3)]
+    visited[start[0]][start[1]] = 1
+    while q:
+        x, y = q.popleft()
+        for n, m in ten:
+            nx = n + x
+            my = m + y
+            if 0 <= nx < R+3 and 0 <= my < C and visited[nx][my] == 0:
+                if arr[x][y] == arr[nx][my] or (arr[nx][my] != 0 and exit_arr[x][y] == 1):
+                    q.append((nx, my))
+                    visited[nx][my] = 1
+                    result = max(result, nx-2)
+    return result
 
-        x, y, z = stack.pop()
-
-        max_val = max(max_val, x)
-
-        if x == R+3:
-            ans += R
-            return
-
-        dir = [(-1, 0), (1, 0), (0, 1), (0, -1)]
-
-        if visited[x][y] == 0:
-            visited[x][y] = 1
-
-        for n, m in dir:
-            xn = x + n
-            ym = y + m
-
-            if 0 <= xn < R+3 and 0 <= ym < C:
-                if visited[xn][ym] == 0 and arr[xn][ym] != 0:
-                    if arr[x][y] == 2:
-                        stack.append((xn, ym, 1))
-                    if arr[x][y] == 3:
-                        stack.append((xn, ym, 0))
-                    if arr[x][y] == 1 and z == 1:
-                        stack.append((xn, ym, 0))
-
-    return max_val - 2
 
 def out_of_range(arr):
-
+    global exit_arr
     for n in range(3):
         for m in range(C):
             if arr[n][m]:
                 arr = [[0] * C for _ in range(R+3)]
+                exit_arr = [[0] * C for _ in range(R+3)]
                 return (arr, 0)
     return (arr, 1)
 
@@ -156,9 +145,12 @@ def out_of_range(arr):
 # R : 행, C : 열, K
 R, C, K = map(int, input().split())
 arr = [[0] * C for _ in range(R+3)]
+
 start = [0, 0]
 ans = 0
 res = 0
+cnt = 1
+exit_arr = [[0] * C for _ in range(R+3)]
 for _ in range(K):
     did = 0
     col, ex = map(int, input().split())
@@ -167,13 +159,11 @@ for _ in range(K):
     # print(col-1)
     down_move(1, col-1, ex, 1)
 
-    # pprint(arr)
     arr, y = out_of_range(arr)
     # print(col, ex)
     # print("-----")
 
     if y:
-        # print(dfs(start))
         res += dfs(start)
-    # print(res)
+
 print(res)
