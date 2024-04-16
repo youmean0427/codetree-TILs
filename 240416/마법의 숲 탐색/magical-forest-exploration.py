@@ -1,6 +1,6 @@
 # import sys
 # sys.stdin = open("input.txt", 'r')
-# from pprint import pprint
+from pprint import pprint
 
 
 #  -1 -1 -1 0 -1, 1
@@ -109,6 +109,7 @@ def down_move(r, c, e, flag): # 행, 열, 출구
 
 def dfs(start):
     global ans
+    # print(start)
     stack = [(start[0], start[1], 0)]
     visited = [[0] * C for _ in range(R + 3)]
     max_val = 0
@@ -136,9 +137,9 @@ def dfs(start):
                     if arr[x][y] == 2:
                         stack.append((xn, ym, 1))
                     if arr[x][y] == 3:
-                        stack.append((xn, ym, z))
+                        stack.append((xn, ym, 0))
                     if arr[x][y] == 1 and z == 1:
-                        stack.append((xn, ym, z))
+                        stack.append((xn, ym, 0))
 
     return max_val - 2
 
@@ -169,10 +170,10 @@ for _ in range(K):
     # pprint(arr)
     arr, y = out_of_range(arr)
     # print(col, ex)
-
     # print("-----")
 
     if y:
+        # print(dfs(start))
         res += dfs(start)
-
+    # print(res)
 print(res)
