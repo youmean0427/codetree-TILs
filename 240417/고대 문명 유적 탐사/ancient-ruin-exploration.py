@@ -1,5 +1,4 @@
-import sys
-
+# import sys
 # sys.stdin = open("input.txt", 'r')
 # from pprint import pprint
 from collections import deque
@@ -32,8 +31,9 @@ def dfs(arr, visited, r, c):
             if 0 <= xn < 5 and 0 <= ym < 5:
                 if visited[xn][ym] == 0 and arr[x][y] == arr[xn][ym]:
                     stack.append((xn, ym))
-                    his.append((xn, ym))
-                    cnt += 1
+                    if (xn, ym) not in his:
+                        his.append((xn, ym))
+                        cnt += 1
 
     if cnt >= 3:
         return (cnt, his)
@@ -134,11 +134,13 @@ his_res = []
 max_arr = []
 
 for i in range(K):
+
     for n in range(1, 4):
         for m in range(1, 4):
             select(arr, n, m)
 
     ans += goal
+
     while True:
         his_res.sort(key=lambda x: (x[1], -x[0]))
 
@@ -147,11 +149,14 @@ for i in range(K):
             wall.rotate(-1)
         goal = 0
         his_res = []
+
         get(max_arr, deg_r_c[0], deg_r_c[1], deg_r_c[2])
 
         ans += goal
+
         if goal == 0 and his_res == []:
             break
+
     arr = max_arr
 
     if ans != 0:
