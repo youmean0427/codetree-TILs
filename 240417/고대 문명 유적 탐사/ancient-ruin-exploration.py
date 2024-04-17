@@ -154,11 +154,12 @@ for i in range(K):
 
         ans += goal
 
-        if goal == 0 and his_res == []:
+        if goal == 0 or his_res == []:
             break
 
     arr = max_arr
-
+    if ans == 0:
+        break
     if ans != 0:
         print(ans, end=" ")
     ans = 0
