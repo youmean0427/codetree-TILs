@@ -11,10 +11,10 @@ for i in range(n):
         if diff in count:
             ans += count[diff]
         
-    ij = arr[i] + arr[j]
-    if ij in count:
-        count[ij] += 1
+
+    if arr[i] in count:
+        count[arr[i]] += 1
     else:
-        count[ij] = 1
+        count[arr[i]] = 1
 
 print(ans)
