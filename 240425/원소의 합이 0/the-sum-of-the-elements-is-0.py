@@ -3,17 +3,20 @@ n = int(input())
 nums = {}
 for i in range(4):
     nums[i] = list(map(int, input().split()))
+
 ans = 0
 count = defaultdict(int)
-for i in nums[3]:
-    count[i] += 1
 
-for i in nums[0]:
-    for j in nums[1]:
-        for k in nums[2]:
-            diff = -(i + j + k)
+for i in range(n):
+    for j in range(n):
+        sum_val = nums[0][i] + nums[1][j]
+        count[sum_val] += 1
 
-            if diff in count:
-                ans += count[diff]
+for i in range(n):
+    for j in range(n):
+        diff = -(nums[2][i] + nums[3][j])
+
+        if diff in count:
+            ans += count[diff]
 
 print(ans)
