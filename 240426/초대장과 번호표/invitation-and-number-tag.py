@@ -4,8 +4,9 @@ y = []
 for _ in range(G):
     x = list(map(int, input().split()))
     y.append(x)
+y.sort()
 
-for c in range(G):
+for c in range(2):
     for i in range(G):
         x = y[i]
         gp = x[0]
