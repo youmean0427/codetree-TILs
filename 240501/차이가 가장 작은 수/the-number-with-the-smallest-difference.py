@@ -8,7 +8,7 @@ for _ in range(n):
 
 ans = float('inf')
 for i in range(len(s)):
-    idx = s.bisect_right(s[i]+m)
+    idx = s.bisect_left(s[i]+m)
     if idx < len(s):
         ans = min(ans, s[idx] - s[i])
 
