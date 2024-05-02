@@ -15,7 +15,7 @@ for _ in range(n):
         print(len(q))
     
     elif y == 'empty':
-        if y:
+        if len(q) > 0:
             print(0)
         else:
             print(1)
