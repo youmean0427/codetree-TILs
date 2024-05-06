@@ -16,7 +16,7 @@ def find(arr, m):
             else:
                 x = a[i]
                 max_cnt = max(max_cnt, cnt)
-
+        max_cnt = max(max_cnt, cnt)
         if max_cnt >= m:
             ans += 1
 
