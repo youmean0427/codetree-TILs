@@ -8,7 +8,7 @@ def find(arr, m):
     global ans
     for a in arr:
         x = a[0]
-        max_cnt = 0
+        max_cnt = 1
         cnt = 1
         for i in range(1, len(a)):
             if a[i] == x:
@@ -17,6 +17,7 @@ def find(arr, m):
                 x = a[i]
                 cnt = 1
             max_cnt = max(max_cnt, cnt)
+
         if max_cnt >= m:
             ans += 1
 
