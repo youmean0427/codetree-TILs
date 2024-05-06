@@ -8,18 +8,18 @@ def find(arr, m):
     global ans
     for a in arr:
         x = a[0]
+        max_cnt = 0
         cnt = 1
         for i in range(1, len(a)):
             if a[i] == x:
                 cnt += 1
             else:
                 x = a[i]
-     
-        if cnt >= m:
+                max_cnt = max(max_cnt, cnt)
+
+        if max_cnt >= m:
             ans += 1
 
-          
- 
 find(arr, m)
 
 col_arr = []
