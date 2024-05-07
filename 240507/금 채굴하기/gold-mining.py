@@ -49,7 +49,7 @@ for x in range(N):
         for i in range(len(bfs_count)):
             g = bfs(x, y, bfs_count[i])
             cost = i * i + (i + 1) * (i +1)
-            if g[0] > cost:
+            if g[0] >= cost:
                 ans = max(ans, g[1])
 
 print(ans)
