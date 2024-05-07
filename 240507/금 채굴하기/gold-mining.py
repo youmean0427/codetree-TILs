@@ -17,6 +17,6 @@ for i in range(n):
             g = gold(i, j, k)
             gc = g * m
             cost = k * k + (k + 1) * (k + 1)
-            if gc > cost:
+            if gc >= cost:
                 ans = max(ans, g)
 print(ans)
