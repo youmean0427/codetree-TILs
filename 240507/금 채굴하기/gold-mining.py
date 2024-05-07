@@ -1,55 +1,55 @@
-N, M = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(N)]
+n, m  = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(n)]
 
 bfs_count = [0, 1]
-bc = 4
-while True:
-    if len(bfs_count) == 10:
-        break
-    bfs_count.append(bfs_count[-1] + bc)
-    bc += 4
+start = 4
+while len(bfs_count) != 10:
+    bfs_count.append(bfs_count[-1] + start)
+    start += 4
 
-
-def bfs(n, m, bfs_c):
-
-    q = [(n, m)]
-    cnt = 0
+def bfs(sn, sm, c):
+    dir = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+    visited = [[0 for _ in range(n)] for _ in range(n)]
+    visited[sn][sm] = 1
+    visited_dict = {}
+   
     gold = 0
-    gold_cnt = 0
-    dir = [(1, 0), (0, 1), (-1, 0), (0, -1)]
-    visited = [[0 for _ in range(N)] for _ in range(N)]
-    visited[n][m] = 1
+    gold_count = 0
+    if arr[sn][sm] == 1:
+        gold = 1
+        gold_count = 1
 
-    if arr[n][m] == 1:
-        gold += M
-        gold_cnt += 1
-    
+    cnt = 0
+    q = [(sn, sm)]
+
     while q:
-        if bfs_c == cnt:
-            return (gold, gold_cnt)
-     
+        if c == cnt:
+            return (gold, gold_count)
+        
         x, y = q.pop(0)
-    
-        for dn, dm in dir:
-            xdn, ydm = x + dn, y + dm
 
-            if 0 <= xdn < N and 0 <= ydm < N:
-                if visited[xdn][ydm] == 0:
-                    visited[xdn][ydm] = 1
-                    if arr[xdn][ydm] == 1:
-                        gold += M
-                        gold_cnt += 1
-                    q.append((xdn, ydm))
+        for dn, dm in dir:
+            dnx , dmy = dn + x, dm + y
+
+            if 0 <= dnx < n and 0 <= dmy < n:
+                if visited[dnx][dmy] == 0:
+                    if arr[dnx][dmy] == 1:
+                        gold_count += 1
+                        gold += m
+                    visited[dnx][dmy] = 1
+                    q.append((dnx, dmy))
+            else:
+                if (dnx, dmy) not in visited_dict:
+                    visited_dict[(dnx, dmy)] = 1
+                    q.append((dnx, dmy))
         cnt += 1
-    return (gold, gold_cnt)
 
 ans = 0
-for x in range(N):
-    for y in range(N):
+for x in range(n):
+    for y in range(n):
         for i in range(len(bfs_count)):
             g = bfs(x, y, bfs_count[i])
-            cost = i * i + (i + 1) * (i +1)
+            cost = i * i + (i + 1) * (i + 1)
             if g[0] >= cost:
                 ans = max(ans, g[1])
-
 print(ans)
