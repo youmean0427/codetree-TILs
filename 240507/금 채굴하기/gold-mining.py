@@ -3,7 +3,7 @@ arr = [list(map(int, input().split())) for _ in range(n)]
 
 bfs_count = [0, 1]
 start = 4
-while len(bfs_count) != 10:
+while len(bfs_count) != 20:
     bfs_count.append(bfs_count[-1] + start)
     start += 4
 
