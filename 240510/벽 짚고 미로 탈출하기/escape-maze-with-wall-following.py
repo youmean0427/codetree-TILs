@@ -1,84 +1,53 @@
 n = int(input())
 x, y = map(int, input().split())
 arr = [list(input()) for _ in range(n)]
+visited = [[[0 for _ in range(5)] for _ in range(n)] for _ in range(n)]
+
+d = 1
+T = 0
 x, y = x - 1, y- 1
-T = 1
-arrive_x, arrive_y = 0, 0
 
-def is_wall(x, y, d):
-    dir = {1: (1, 0), 2: (0, 1), 3: (-1, 0), 4: (0, -1)}
+change_dir = {1: 2, 2: 3, 3: 4, 4: 1}
+change_dir_re = {1: 4, 2: 1, 3: 2, 4: 3}
+dir = {1: (0, 1), 2: (-1, 0), 3: (0, -1), 4: (1, 0)}
+right_dir = {1: (1, 0), 2: (0, 1), 3: (-1, 0), 4: (0, -1)}
     
-    dn, dm = dir[d]
-    dnx, dmy = dn + x, dm + y
+def in_range(x, y):
+    return 0 <= x < n and 0 <= y < n
 
-    if 0 <= dnx < n and 0 <= dmy < n:
-        if arr[dnx][dmy] == "#":
-            return True
-    return False
+def is_wall(x, y):
+    return in_range(x, y) and arr[x][y] == "#"
         
+def move():
+    global x, y, d, T
+    if visited[x][y][d] == 1:
+        print(-1)
+        exit(0)
 
-def is_move(x, y, d):
-    global T, arrive_x, arrive_y
-    dir = {1: (0, 1), 2: (-1, 0), 3: (0, -1), 4: (1, 0)}
-    c_dir = {1: 2, 2: 3, 3: 4, 4: 1}
-    rc_dir = {1 : 4, 2: 1, 3: 2, 4: 3}
-    dn, dm = dir[d]
-    dnx, dmy = dn + x, dm + y
+    visited[x][y][d] = 1
+    next_x, next_y = x + dir[d][0], y + dir[d][1]
 
-    if 0 <= dnx < n and 0 <= dmy < n:
-        if arr[dnx][dmy] == "#":
-            d = c_dir[d]
-            if is_wall(dnx, dmy, d):
-                dn, dm = dir[d]
-                dnx, dmy = x + dn, y + dm
-                if 0 <= dnx < n and 0 <= dmy < n:
-                    return(dnx, dmy, d)
-                else:
-                    arrive_x = dnx
-                    arrive_y = dmy
-                    return False
-            else:
-                d = rc_dir[d]
-                dn, dm = dir[d]
-                dnx, dmy = x + dn, y + dm
-                if 0 <= dnx < n and 0 <= dmy < n:
-                    return(dnx, dmy, d)
-                else:
-                    arrive_x = dnx
-                    arrive_y = dmy
-                    return False
+    if is_wall(next_x, next_y):
+        d = change_dir[d]
 
-        else:
-            if is_wall(dnx, dmy, d):
-                T += 1
-                return (dnx, dmy, d)
-            else:
-                d = rc_dir[d]
-                T += 1
-                return (dnx, dmy, d)
+    elif not in_range(next_x, next_y):
+        x, y = next_x, next_y
+        T += 1
 
     else:
-        arrive_x = dnx
-        arrive_y = dmy
-        return False
+        rx = next_x + right_dir[d][0]
+        ry = next_y + right_dir[d][1]
 
-
-def dfs(sn, sm):
-    stack = [(sn, sm, 1)]
-    visited = [[0 for _ in range(n)] for _ in range(n)]
-    while stack:
-        x, y, d = stack.pop()
-        visited[x][y] = 1
-        mr = is_move(x, y, d)
-        if mr:
-            if visited[mr[0]][mr[1]] == 0:
-                stack.append((mr[0], mr[1], mr[2]))
+        if is_wall(rx, ry):
+            x, y = next_x, next_y
+            T += 1
+        
         else:
-            return
+            d = change_dir_re[d]
+            x, y = rx, ry
+            T += 2
 
-dfs(x, y)
+while in_range(x, y):
+    move()
 
-if 0 <= arrive_x < n and 0 <= arrive_y < n:
-    print(-1)
-else:
-    print(T)
+print(T)
