@@ -28,7 +28,26 @@ def is_move(x, y, d):
     if 0 <= dnx < n and 0 <= dmy < n:
         if arr[dnx][dmy] == "#":
             d = c_dir[d]
-            return (x, y, d)
+            if is_wall(dnx, dmy, d):
+                dn, dm = dir[d]
+                dnx, dmy = dnx + dn, dmy + dm
+                if 0 <= dnx < n and 0 <= dmy < n:
+                    return(dnx, dmy, d)
+                else:
+                    arrive_x = dnx
+                    arrive_y = dmy
+                    return False
+            else:
+                d = rc_dir[d]
+                dn, dm = dir[d]
+                dnx, dmy = dnx + dn, dmy + dm
+                if 0 <= dnx < n and 0 <= dmy < n:
+                    return(dnx, dmy, d)
+                else:
+                    arrive_x = dnx
+                    arrive_y = dmy
+                    return False
+
         else:
             if is_wall(dnx, dmy, d):
                 T += 1
@@ -49,11 +68,11 @@ def dfs(sn, sm):
     visited = [[0 for _ in range(n)] for _ in range(n)]
     while stack:
         x, y, d = stack.pop()
-
-        visited[x][y] += 1
+        
+        visited[x][y] = 1
         mr = is_move(x, y, d)
         if mr:
-            if visited[mr[0]][mr[1]] < 4:
+            if visited[mr[0]][mr[1]] == 0:
                 stack.append((mr[0], mr[1], mr[2]))
         else:
             return
