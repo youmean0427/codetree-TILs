@@ -30,7 +30,7 @@ def is_move(x, y, d):
             d = c_dir[d]
             if is_wall(dnx, dmy, d):
                 dn, dm = dir[d]
-                dnx, dmy = dnx + dn, dmy + dm
+                dnx, dmy = x + dn, y + dm
                 if 0 <= dnx < n and 0 <= dmy < n:
                     return(dnx, dmy, d)
                 else:
@@ -40,7 +40,7 @@ def is_move(x, y, d):
             else:
                 d = rc_dir[d]
                 dn, dm = dir[d]
-                dnx, dmy = dnx + dn, dmy + dm
+                dnx, dmy = x + dn, y + dm
                 if 0 <= dnx < n and 0 <= dmy < n:
                     return(dnx, dmy, d)
                 else:
@@ -68,7 +68,6 @@ def dfs(sn, sm):
     visited = [[0 for _ in range(n)] for _ in range(n)]
     while stack:
         x, y, d = stack.pop()
-        
         visited[x][y] = 1
         mr = is_move(x, y, d)
         if mr:
