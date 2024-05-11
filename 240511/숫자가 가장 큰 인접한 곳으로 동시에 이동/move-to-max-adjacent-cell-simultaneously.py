@@ -24,7 +24,7 @@ def find():
         bn, bm = balls.pop(0)
 
         m_b = 0
-        for dn, dm in dir[::-1]:
+        for dn, dm in dir:
             bdn, bdm = bn + dn, bm + dm
             if 0 <= bdn < n and 0 <= bdm < n:
                 if arr[bdn][bdm] > m_b:
@@ -36,16 +36,20 @@ def find():
    
     balls_cnt = check_ball_cnt(move_arr)
 
-    ans = 0
+
     for i in range(n):
         for j in range(n):
             if balls_cnt[i][j]:
                 balls.append((i, j))
-                ans += 1
-
-    return ans
+    return balls_cnt
 
 while t > 0:
-    ans = find()
+    balls_cnt = find()
     t -= 1
+
+ans = 0
+for i in range(n):
+    for j in range(n):
+        if balls_cnt[i][j]:
+            ans += 1
 print(ans)
