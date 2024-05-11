@@ -18,7 +18,7 @@ def check_ball_cnt(arr):
 
 def find():
     move_arr = [[0 for _ in range(n)] for _ in range(n)]
-    dir = [(-1, 0), (1, 0), (0, 1), (0, -1)]
+    dir = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
     while balls:
         bn, bm = balls.pop(0)
@@ -33,9 +33,10 @@ def find():
         
         move_arr[next_pos[0]][next_pos[1]] += 1
     
-   
-    balls_cnt = check_ball_cnt(move_arr)
-
+    check =  check_ball_cnt(move_arr)
+    for i in range(n):
+        for j in range(n):
+            balls_cnt[i][j] = check[i][j]
 
     for i in range(n):
         for j in range(n):
@@ -52,4 +53,5 @@ for i in range(n):
     for j in range(n):
         if balls_cnt[i][j]:
             ans += 1
+
 print(ans)
