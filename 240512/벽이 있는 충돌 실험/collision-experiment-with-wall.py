@@ -17,7 +17,10 @@ def ball_move():
                     else:
                         move_arr[di][dj] = arr[i][j]
                 else:
-                    move_arr[i][j] = c_dir[arr[i][j]]
+                    if move_arr[i][j]:
+                        move_arr[i][j] = ""
+                    else:
+                        move_arr[i][j] = c_dir[arr[i][j]]
 
     return move_arr
 
