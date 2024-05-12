@@ -41,7 +41,7 @@ for _ in range(T):
         ball_x, ball_y = int(ball[0])-1, int(ball[1])-1
         arr[ball_x][ball_y] = ball[2]
     
-    for _ in range(n*n):
+    for _ in range(n):
         next_arr = ball_move()
         arr = next_arr
 
