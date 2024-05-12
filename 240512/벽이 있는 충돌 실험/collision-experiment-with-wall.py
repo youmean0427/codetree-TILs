@@ -12,25 +12,19 @@ def ball_move():
                 d = dir[arr[i][j]]
                 di, dj = i + d[0], j + d[1]
                 if 0 <= di < n and 0 <= dj < n:
-                    if move_arr[di][dj]:
-                        move_arr[di][dj] = ""
-                    else:
-                        move_arr[di][dj] = arr[i][j]
+                    move_arr[di][dj] += arr[i][j]
                 else:
-                    if move_arr[i][j]:
-                        move_arr[i][j] = ""
-                    else:
-                        move_arr[i][j] = c_dir[arr[i][j]]
+                    move_arr[i][j] += c_dir[arr[i][j]]
 
-    return move_arr
-
-def count(arr):
     cnt = 0
     for i in range(n):
         for j in range(n):
-            if arr[i][j]:
+            if len(move_arr[i][j]) > 1:
+                move_arr[i][j] = ""
+            elif move_arr[i][j]:
                 cnt += 1
-    return cnt
+
+    return (cnt, move_arr)
 
 for _ in range(T):
     n, m = map(int, input().split())
@@ -43,6 +37,6 @@ for _ in range(T):
     
     for _ in range(2*n):
         next_arr = ball_move()
-        arr = next_arr
+        arr = next_arr[1]
 
-    print(count(arr))
+    print(next_arr[0])
