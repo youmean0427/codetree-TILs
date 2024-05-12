@@ -16,8 +16,7 @@ def find(nx, ny, k):
                 max_pos = (dnx, dny)
 
     arr[nx][ny], arr[max_pos[0]][max_pos[1]] = arr[max_pos[0]][max_pos[1]], arr[nx][ny]
-    nums[arr[nx][ny]] = (max_pos[0], max_pos[1])
-    nums[arr[max_pos[0]][max_pos[1]]] = (nx, ny)
+    nums[arr[nx][ny]], nums[arr[max_pos[0]][max_pos[1]]] = (nx, ny),  (max_pos[0], max_pos[1])
 
 
 def change():
@@ -25,12 +24,12 @@ def change():
     for i in range(n):
         for j in range(n):
             nums[arr[i][j]] = (i, j)
+            
+    for _ in range(m):
+        for i in nums:
+            find(nums[i][0], nums[i][1], i)
 
-    for i in nums:
-        find(nums[i][0], nums[i][1], i)
+change()
 
-for _ in range(m):
-    change()
-    
 for i in arr:
     print(*i)
