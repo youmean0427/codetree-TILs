@@ -18,7 +18,13 @@ for _ in range(n):
                 continue
         if cnt == 1:
             cnt = 0
-            new_arr.pop() 
+            new_arr.pop()
+            if new_arr[-1] == arr[i]:
+                if i == len(arr) -1:
+                    new_arr.pop()
+                    break
+                cnt = 1
+                continue
         new_arr.append(arr[i])
     arr = new_arr
 
