@@ -5,29 +5,15 @@ def check(sm):
     i = 0
 
     while i < n:
-        
-        if sm[i] == "2":
-            if sm[i:i+2].count(sm[i]) == 2:
-                i += 2
-                continue
-            else:
+
+        if i + int(sm[i]) - 1 >= n:
+            return False
+
+        for j in range(i, i+int(sm[i])):
+            if sm[j] != sm[i]:
                 return False
 
-        elif sm[i] == "3":
-            if sm[i:i+3].count(sm[i]) == 3:
-                i += 3
-                continue
-            else:
-                return False
-
-        elif sm[i] == "4":
-            if sm[i:i+4].count(sm[i]) == 4:
-                i += 4
-                continue
-            else:
-                return False
-                
-        i += 1
+        i += int(sm[i])
 
     return True
 
