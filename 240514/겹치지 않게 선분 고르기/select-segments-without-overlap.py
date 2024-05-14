@@ -9,15 +9,11 @@ def check(arr):
     cnt = 0
 
     for s, e in arr:
-        if visited[s]:
-            return 0
-        if visited[e]:
-            return 0
-
-        visited[s] = 1
-        visited[e] = 1
+        for i in range(s, e+1):
+            if visited[i]:
+                return 0
+            visited[i] = 1
         cnt += 1
-    
     return cnt
 
 ans = 0
