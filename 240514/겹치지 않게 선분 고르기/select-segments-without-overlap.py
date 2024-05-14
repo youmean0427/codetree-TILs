@@ -5,7 +5,7 @@ for _ in range(n):
 
 def check(arr):
 
-    visited = [0] * (16)
+    visited = [0] * (1001)
     cnt = 0
 
     for s, e in arr:
