@@ -5,18 +5,19 @@ arr = list(map(int, input().split()))
 def back(cnt, sm):
     global ans
 
+    total = 0
+    for i in sm:
+        if sm[i] >= m:
+            total += 1
+    ans = max(ans, total)
+
     if cnt >= n:
-        total = 0
-        for i in sm:
-            if sm[i] >= m:
-                total += 1
-        ans = max(ans, total)
         return 
 
     for i in range(1, k+1):
         if sm[i] >= m:
             continue
-            
+
         sm[i] = sm[i] + arr[cnt]
         back(cnt+1, sm)
         sm[i] = sm[i] - arr[cnt]
