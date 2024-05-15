@@ -14,6 +14,9 @@ def back(cnt, sm):
         return 
 
     for i in range(1, k+1):
+        if sm[i] >= m:
+            continue
+            
         sm[i] = sm[i] + arr[cnt]
         back(cnt+1, sm)
         sm[i] = sm[i] - arr[cnt]
