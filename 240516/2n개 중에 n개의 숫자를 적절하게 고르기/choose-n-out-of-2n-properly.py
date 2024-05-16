@@ -2,22 +2,14 @@ n = int(input())
 arr = list(map(int, input().split()))
 visited = [0] * (2*n)
 
-def now_visited(visited):
-
-    total = 0
-    for i in range(2*n):
-        if visited[i] == 0:
-            total += arr[i]
-    return total
 
 ans = float('inf')
-
 def back(cnt, sm):
     global ans
 
     if cnt >= n:
         if len(sm) == n:
-            ans = min(ans, abs(sum(sm) - now_visited(visited)))
+            ans = min(ans, abs(sum(arr) - sum(sm) - sum(sm)))
         return
     
     for i in range(2*n):
