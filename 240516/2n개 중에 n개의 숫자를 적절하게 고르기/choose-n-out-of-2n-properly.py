@@ -7,6 +7,9 @@ ans = float('inf')
 def back(cnt, sm):
     global ans
 
+    if ans < abs(sum(arr) - sum(sm) - sum(sm)):
+        return
+
     if cnt >= n:
         if len(sm) == n:
             ans = min(ans, abs(sum(arr) - sum(sm) - sum(sm)))
