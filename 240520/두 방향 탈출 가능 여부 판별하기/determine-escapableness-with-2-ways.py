@@ -2,7 +2,7 @@ n, m  = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(n)]
 
 dir = [(1, 0), (0, 1)]
-visited = [[0 for _ in range(n)] for _ in range(m)]
+visited = [[0 for _ in range(m)] for _ in range(n)]
 
 def dfs(nn, mm):
 
