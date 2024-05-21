@@ -1,6 +1,6 @@
 n, m = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(n)]
-visited = [[0 for _ in range(n)] for _ in range(m)]
+visited = [[0 for _ in range(m)] for _ in range(n)]
 dir = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 def bfs(sn, sm):
 
