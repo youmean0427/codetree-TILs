@@ -2,11 +2,12 @@ n, k = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(n)]
 
 q = []
+visited = []
+
 for _ in range(k):
     a, b = map(int, input().split())
-    q.append((a, b))
-
-visited = []
+    q.append((a-1, b-1))
+    visited.append((a-1, b-1))
 
 dir = [(0, 1), (1, 0), (-1, 0), (0, -1)]
 
