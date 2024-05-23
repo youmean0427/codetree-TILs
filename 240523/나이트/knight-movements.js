@@ -35,7 +35,7 @@ const visited = Array.from(new Array(n), () => Array(n).fill(-1))
 let q = new Queue()
 
 q.push([r1-1, c1-1])
-visited[r1-1][c1-1] = 1
+visited[r1-1][c1-1] = 0
 
 dir = [[-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2], [-1, -2], [-2, -1]]
 
@@ -64,4 +64,4 @@ function bfs() {
 }
 
 bfs()
-console.log(visited[r2-1][c2-1]-1)
+console.log(visited[r2-1][c2-1])
