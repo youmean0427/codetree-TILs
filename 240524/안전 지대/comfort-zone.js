@@ -1,8 +1,7 @@
 const fs = require('fs')
 const input = fs.readFileSync(0).toString().trim().split("\n")
-
 const [n, m] = input[0].split(" ").map(x => parseInt(x))
-const arr = input.slice(1, n+1).map(x => x.split(" ").map(x => parseInt(x)))
+const arr = input.slice(1, n+1).map(x => x.trim().split(" ").map(x => parseInt(x)))
 
 function find_max(arr) {
     let m = 0
@@ -37,6 +36,7 @@ function dfs(sn, sm, cnt){
 ans = []
 for (let k = 1; k < find_max(arr)+1; k++) {
     visited = Array.from(Array(n), () => Array(m).fill(0))
+
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < m; j++) {
             if (arr[i][j] <= k) {
