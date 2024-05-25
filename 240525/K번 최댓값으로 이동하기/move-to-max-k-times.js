@@ -15,7 +15,7 @@ function bfs(sn, sm) {
     visited[sn][sm] = 1
 
     maxValue = 0
-    maxPos = [Infinity, Infinity]
+    maxPos = [sn, sm]
 
     while(q.length) {
         
