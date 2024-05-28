@@ -29,6 +29,18 @@ for i in range(n):
         if 0 >= j-1 or j-1 >= n:
             dp[i][j][1] = dp[i][j][0]
 
-   
-ans = max(max(dp[n-1][n-1]),max(dp[n-2][n-1]), max(dp[n-1][n-2]))
-print(ans)
+
+ans = []
+for i in dp[n-2][n-1]:
+    if arr[n-1][n-1] < i:
+        ans.append(arr[n-1][n-1])
+    else:
+        ans.append(i)
+
+for i in dp[n-1][n-2]:
+    if arr[n-1][n-1] < i:
+        ans.append(arr[n-1][n-1])
+    else:
+        ans.append(i)
+
+print(max(ans))
