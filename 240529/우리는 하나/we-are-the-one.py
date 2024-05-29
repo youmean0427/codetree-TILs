@@ -16,9 +16,9 @@ def bfs(pos):
     for i in pos:
         q.append(i)
     
-    cnt = 0
     while q:
         x, y= q.pop(0)
+        visited[x][y] = 1
 
         for dx, dy in dir:
             dxx = dx + x
