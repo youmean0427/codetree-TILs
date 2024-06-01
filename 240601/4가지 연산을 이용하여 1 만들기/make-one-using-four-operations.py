@@ -6,6 +6,9 @@ def bfs(n):
     
     visited[n] = 1
     q = deque([[n, 0]])
+    if n == 1:
+        print(0)
+        return
 
     while q:
         x, cnt = q.popleft()
@@ -26,7 +29,7 @@ def bfs(n):
             if visited[x//2] > cnt+1: 
                 visited[x//2] = cnt+1
                 q.append([x // 2, cnt+1])
-                
+
         if x % 3 == 0:
             if visited[x//3] > cnt + 1:
                 visited[x//3] = cnt+1
