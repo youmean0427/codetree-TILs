@@ -24,13 +24,16 @@ def bfs(sn, sm, w):
             dy = dm + y
 
             if 0 <= dx < n and 0 <= dy < n:
-                if arr[dx][dy] == 0 and visited[dx][dy] == float('inf'):
-                    visited[dx][dy] = min(visited[dx][dy], visited[x][y] + 1)
+                if arr[dx][dy] == 0 and visited[dx][dy] >= visited[x][y] + 1:
+                    visited[dx][dy] = visited[x][y] + 1
                     q.append((dx, dy, wall))
-                elif arr[dx][dy] == 1 and visited[dx][dy] == float('inf'):
+                elif arr[dx][dy] == 1 and visited[dx][dy] >= visited[x][y] + 1:
                     if wall < k:
-                        visited[dx][dy] = min(visited[dx][dy], visited[x][y] + 1)
+                        visited[dx][dy] = visited[x][y] + 1
                         q.append((dx, dy, wall+1))
+                        
+
+
 bfs(r1-1, c1-1, 0)
 ans = visited[r2-1][c2-1]-1
 
