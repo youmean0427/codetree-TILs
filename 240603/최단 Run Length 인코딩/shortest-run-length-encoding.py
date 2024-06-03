@@ -16,13 +16,16 @@ for i in range(len(A)):
             cnt += 1
         else:
             res.append(temp)
-            res.append(cnt)
+            res.append(str(cnt))
             temp = q[idx]
             cnt = 1 
-            
+
     res.append(temp)
-    res.append(cnt)
-    
-    ans = min(ans, len(res)-2)
+    res.append(str(cnt))
+    res_str = ""
+    for res_idx in range(2, len(res)):
+         res_str += res[res_idx]
+
+    ans = min(ans, len(res_str))
 
 print(ans)
