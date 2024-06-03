@@ -68,7 +68,7 @@ for line in dir_line:
 
 if dir == 'L':
     for i in res:
-        print(i)
+        print(*i)
 
 elif dir == 'R':
     for i in res:
