@@ -35,7 +35,7 @@ def line_sum(line):
     gravity = []
     start_idx = 0
     end_idx = 1
-    jump = 0
+
     while end_idx < 4:
         if line[start_idx] == line[end_idx]:
             line[start_idx]= 2 * line[start_idx]
@@ -44,7 +44,6 @@ def line_sum(line):
             end_idx = start_idx + 1
         elif line[start_idx] and line[end_idx] == 0:
             end_idx += 1
-            jump = 1
 
         else:
             start_idx = end_idx
