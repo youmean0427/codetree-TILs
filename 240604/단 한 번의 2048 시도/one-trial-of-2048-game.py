@@ -45,13 +45,10 @@ def line_sum(line):
         elif line[start_idx] and line[end_idx] == 0:
             end_idx += 1
             jump = 1
-        elif jump:
-            jump = 0
+
+        else:
             start_idx = end_idx
             end_idx = start_idx + 1
-        else:
-            start_idx += 1
-            end_idx += 1
     
     for i in line:
         if i != 0:
