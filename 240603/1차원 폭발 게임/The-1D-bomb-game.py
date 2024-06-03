@@ -4,40 +4,41 @@ for _ in range(N):
     bomb.append(int(input()))
 
 
-time = N//2
-while (time >= 0 ):
+
+explode = True
+
+while explode:
+
+    explode = False
+    start_idx = 0
+    end_idx = 1
+
+    while end_idx < len(bomb):
+
+        if bomb[start_idx] == bomb[end_idx]:
+            end_idx += 1
+
+            if end_idx >= len(bomb):
+                if end_idx - start_idx >= M:
+                    bomb[start_idx:end_idx] = [0] * (end_idx - start_idx)
+                    explode = True
+
+        else:
+            if end_idx - start_idx >= M:
+                bomb[start_idx:end_idx] = [0] * (end_idx - start_idx)
+                explode = True
+            start_idx = end_idx
+            end_idx = start_idx + 1
+            
     temp = []
-    if len(bomb) == 0:
-        break
-    now_bomb = bomb[0]
-    bomb_cnt = 1
-
-    for idx in range(1, len(bomb)):
-        if now_bomb == bomb[idx]:
-            bomb_cnt += 1
-        else:
-            temp.append((now_bomb, bomb_cnt))
-            now_bomb = bomb[idx]
-            bomb_cnt = 1
-
-    temp.append((now_bomb, bomb_cnt))
-
-    temp2 = []
-    for num, cnt in temp:
-        if cnt >= M:
-            continue
-        else:
-            while cnt:
-                temp2.append(num)
-                cnt -= 1
-    bomb = temp2
-    time -= 1
-
-
-
-if (bomb):
-    print(len(bomb))
     for i in bomb:
-        print(i)
+        if i:
+            temp.append(i)
+    bomb=temp
+
+if bomb:
+    print(len(bomb))
+    for b in bomb:
+        print(b)
 else:
     print(0)
