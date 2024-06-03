@@ -29,11 +29,14 @@ while explode:
                 explode = True
             start_idx = end_idx
             end_idx = start_idx + 1
-            
+
     temp = []
-    for i in bomb:
-        if i:
-            temp.append(i)
+    if M == 1:
+        pass
+    else:
+        for i in bomb:
+            if i:
+                temp.append(i)
     bomb=temp
 
 if bomb:
