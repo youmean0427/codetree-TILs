@@ -59,11 +59,11 @@ for c in col:
     while arr[row][c] == 0:
         row += 1
         if row >= n:
-            type = 1
-            break
+            for a in arr:
+                print(*a)
+                exit(0)
 
-    if type == 0:
-        explode(row, c)
+    explode(row, c)
     
 
 for a in arr:
