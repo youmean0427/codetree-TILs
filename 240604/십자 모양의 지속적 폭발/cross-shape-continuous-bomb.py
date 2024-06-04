@@ -14,8 +14,17 @@ def temp_copy():
 
 def explode(sn, sm):
     global arr
+    
+    while arr[sn][sm] == 0:
+        sn += 1
+        if sn >= n or sn < 0:
+            return
+
+    
     temp = temp_copy()
     
+
+
     dir = [(0, 1), (1, 0), (0, -1), (-1, 0)]
     cnt = 1
     temp[sn][sm] = 0
@@ -54,16 +63,11 @@ def gravity(g_arr):
             
 row = 0
 type = 0
+
 for c in col:
-
-    while arr[row][c] == 0:
-        row += 1
-        if row >= n:
-            for a in arr:
-                print(*a)
-                exit(0)
-
     explode(row, c)
+ 
+        
     
 
 for a in arr:
