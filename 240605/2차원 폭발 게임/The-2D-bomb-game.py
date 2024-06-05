@@ -29,11 +29,12 @@ def rotate(arr):
     return r_arr
 
 while k > 0:
+    
     copy()
     for i in range(n):
         
         start = 0
-        end = 1
+        end = 0
         if m == 1:
             check = True
         else:
@@ -43,27 +44,25 @@ while k > 0:
 
             if arr[start][i] == arr[end][i]:
                 end += 1
-                check = True
+
             else:
-                if check:
-                    if end - start >= m:
-                        for row in range(start, end):
-                            temp[row][i] = 0
+                if (end - start) >= m:
+                    for row in range(start, end):
+                        temp[row][i] = 0
                 start = end
-                end = start+1
+                end = start + 1
                 check = False
         
         if check:
             for row in range(start, end):
                 temp[row][i] = 0
-        
+
     g_arr = gravity(temp)
     r_arr = rotate(g_arr)
     g_arr = gravity(r_arr)
     arr = g_arr
  
     k-=1
-
 
 ans = 0
 for i in range(n):
