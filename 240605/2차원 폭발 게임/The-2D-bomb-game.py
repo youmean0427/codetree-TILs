@@ -37,6 +37,10 @@ while k >= 0:
         check = False
 
         while end < n:
+            if start == 0 and end == 0:
+                end += 1
+                continue
+
             if arr[start][i] == arr[end][i]:
                 end += 1
                 check = True
@@ -51,7 +55,7 @@ while k >= 0:
         if check:
             for row in range(start, end):
                 temp[row][i] = 0
-    
+
     g_arr = gravity(temp)
     r_arr = rotate(g_arr)
     g_arr = gravity(r_arr)
