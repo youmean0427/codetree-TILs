@@ -28,7 +28,7 @@ def rotate(arr):
             r_arr[i][j] = arr[(n-1)-j][i]
     return r_arr
 
-while k >= 0:
+while k > 0:
     copy()
     for i in range(n):
         
