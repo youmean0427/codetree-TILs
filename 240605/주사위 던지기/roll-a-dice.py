@@ -60,10 +60,10 @@ def move(r, c, d):
     global front, top
 
     move_dir = {'L' : (0, -1), 'R': (0, 1), 'U': (-1, 0), 'D': (1, 0)}
-    front, top = dice[front][top][d]
     rn, cm = r + move_dir[d][0], c + move_dir[d][1]
-
+    
     if ( 0 <= rn < n and 0 <= cm < n):
+        front, top = dice[front][top][d]
         arr[rn][cm] = 7 - top
         return rn, cm 
     
