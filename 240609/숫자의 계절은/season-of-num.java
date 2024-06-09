@@ -8,7 +8,7 @@ public class Main {
         if (m >= 3 && m <= 5) {
             ans = "Spring";
         } else if (m >= 6 && m <= 8) {
-            ans = "Summber";
+            ans = "Summer";
         } else if (m >= 9 && m <= 11 ){
             ans = "Fall";
         } else {
