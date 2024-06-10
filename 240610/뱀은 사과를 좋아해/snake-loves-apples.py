@@ -1,3 +1,5 @@
+from collections import deque
+
 n, m, k = map(int, input().split())
 apple = []
 snake = []
@@ -11,7 +13,8 @@ for _ in range(k):
 arr = [[0 for _ in range(n)] for _ in range(n)]
 temp = [[0 for _ in range(n)] for _ in range(n)]
 
-visited = [(0, 0)]
+visited = deque([])
+visited.append((0, 0))
 
 for ax, ay in apple:
     arr[ax][ay] = 1
@@ -21,21 +24,20 @@ dir = {"R": (0, 1), "L": (0, -1), "U": (-1, 0), "D": (1, 0)}
 for d, c in snake:
     for _ in range(c):
         time += 1
-        now_visited = []
+        now_visited = deque([])
         temp = [[0 for _ in range(n)] for _ in range(n)]
-        x, y = visited.pop(0)
+        x, y = visited.popleft()
         now_x, now_y = x, y
         
         dx, dy = x + dir[d][0], y + dir[d][1]
  
         if (0 <= dx < n and 0 <= dy < n):
             
-
             now_visited.append((dx, dy))
             temp[dx][dy] = 1
 
             while visited:
-                vx, vy = visited.pop(0)
+                vx, vy = visited.popleft()
                 if (temp[now_x][now_y]):
                     print(time)
                     exit(0)
@@ -56,3 +58,6 @@ for d, c in snake:
         visited = now_visited
     
 print(time)
+
+# 뱀의 이전 기록을 배열로 저장하면,
+# 길이: 4, 이동: D-L-U의 경우 이동이 불가능함
