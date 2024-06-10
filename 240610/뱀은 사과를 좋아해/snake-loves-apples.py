@@ -9,7 +9,6 @@ for _ in range(k):
     snake.append((line[0], int(line[1])))
 
 arr = [[0 for _ in range(n)] for _ in range(n)]
-now_temp = [[0 for _ in range(n) for _ in range(n)]]
 temp = [[0 for _ in range(n)] for _ in range(n)]
 
 visited = [(0, 0)]
@@ -31,21 +30,22 @@ for d, c in snake:
  
         if (0 <= dx < n and 0 <= dy < n):
             
-            if now_temp[dx][dy] == 1:
-                print(time)
-                exit(0)
 
             now_visited.append((dx, dy))
             temp[dx][dy] = 1
 
-
             while visited:
                 vx, vy = visited.pop(0)
+                if (temp[now_x][now_y]):
+                    print(time)
+                    exit(0)
+                    
                 now_visited.append((now_x, now_y))
                 temp[now_x][now_y] = 1
                 now_x, now_y = vx, vy
 
             if (arr[dx][dy] == 1):
+                arr[dx][dy] = 0
                 temp[now_x][now_y] = 1
                 now_visited.append((now_x, now_y))
         else:
@@ -53,8 +53,6 @@ for d, c in snake:
             exit(0)
             break
 
-        now_temp = temp
         visited = now_visited
     
-
 print(time)
