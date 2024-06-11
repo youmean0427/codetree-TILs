@@ -21,9 +21,9 @@ for m in move:
                     now_n = i
                     now_m = j
 
-    max_num = 0
-    move_n = 0
-    move_m = 0
+    max_num = -1
+    move_n = -1
+    move_m = -1
     
     for dn, dm in dir:
         dx, dy = now_n + dn, now_m + dm
@@ -34,8 +34,12 @@ for m in move:
                     max_num = max(temp[dx][dy])
                     move_n, move_m = dx, dy
 
-    temp[move_n][move_m] = temp[now_n][now_m][:now_idx+1] + temp[move_n][move_m]
-    temp[now_n][now_m] = temp[now_n][now_m][now_idx+1:]
+    if move_n == -1 and move_m == -1:
+        pass
+    else:
+        temp[move_n][move_m] = temp[now_n][now_m][:now_idx+1] + temp[move_n][move_m]
+        temp[now_n][now_m] = temp[now_n][now_m][now_idx+1:]
+
 
 for i in temp:
     for j in i:
