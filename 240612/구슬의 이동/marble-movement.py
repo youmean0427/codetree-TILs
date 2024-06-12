@@ -48,11 +48,15 @@ while t > 0:
         res = move(x)
 
         arr[res[0]][res[1]].append((res[2], res[3], res[4]))
-        temp_balls.append(res)
     
     arr = prior(arr)
+    for i in range(n):
+        for j in range(n):
+            if arr[i][j]:
+                for a in arr[i][j]:
+                    temp_balls.append((i, j, a[0], a[1], a[2]))
+    
     balls = temp_balls
-# print(arr)
 
 ans = 0
 for i in range(n):
