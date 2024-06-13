@@ -13,8 +13,8 @@ def dist(sm):
     for i in range(len(sm)):
         for j in range(i, len(sm)):
             if i != j:
-                dis = math.sqrt((sm[i][0]-sm[j][0]) ** 2 +  (sm[i][1]-sm[j][1]) ** 2 )
-        max_v = max(max_v, dis)
+                dis =((sm[i][0]-sm[j][0]) ** 2 + (sm[i][1]-sm[j][1]) ** 2 )
+                max_v = max(max_v, dis)
     return max_v
 
 ans = float('inf')
@@ -33,10 +33,4 @@ def back(idx, sm):
 back(0, [])
 
 
-x = ans ** 2
-s = str(x)
-sid = s.index(".")
-if s[sid+1] != '0':
-    print(math.ceil(ans**2))
-else:
-    print(int(ans ** 2))
+print(ans)
