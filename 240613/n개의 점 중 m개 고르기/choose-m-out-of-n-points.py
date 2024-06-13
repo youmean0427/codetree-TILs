@@ -1,3 +1,4 @@
+import math 
 n, m = map(int, input().split())
 
 arr = []
@@ -12,7 +13,7 @@ def dist(sm):
     for i in range(len(sm)):
         for j in range(i, len(sm)):
             if i != j:
-                dis = ((sm[i][0]-sm[j][0]) ** 2 +  (sm[i][1]-sm[j][1]) ** 2 ) ** (1/2)
+                dis = math.sqrt((sm[i][0]-sm[j][0]) ** 2 +  (sm[i][1]-sm[j][1]) ** 2 )
         max_v = max(max_v, dis)
     return max_v
 
@@ -29,6 +30,13 @@ def back(idx, sm):
     back(idx+1, sm+[arr[idx]])
     back(idx+1, sm)
 
-
 back(0, [])
-print(int(ans ** 2))
+
+
+x = ans ** 2
+s = str(x)
+sid = s.index(".")
+if s[sid+1] == '9':
+    print(math.ceil(ans**2))
+else:
+    print(int(ans ** 2))
