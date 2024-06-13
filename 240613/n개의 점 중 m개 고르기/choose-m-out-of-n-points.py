@@ -36,7 +36,7 @@ back(0, [])
 x = ans ** 2
 s = str(x)
 sid = s.index(".")
-if s[sid+1] == '9':
+if s[sid+1] != '0':
     print(math.ceil(ans**2))
 else:
     print(int(ans ** 2))
