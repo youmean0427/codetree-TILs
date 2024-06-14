@@ -7,7 +7,8 @@ def back(cnt, sm, now):
     global ans
     if cnt >= n-1:
         # print(sm, now)
-        ans = min(ans, sum(sm) + arr[now][0])
+        if arr[now][0] != 0:
+            ans = min(ans, sum(sm) + arr[now][0])
         return
 
     for i in range(n):
