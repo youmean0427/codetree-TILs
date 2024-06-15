@@ -14,6 +14,5 @@ for i in arr:
     if i >= s[idx]:
         s.remove(s[idx])
         cnt += 1
-    else:
-        break
+ 
 print(cnt)
