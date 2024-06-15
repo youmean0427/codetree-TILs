@@ -11,8 +11,13 @@ arr = list(map(int, input().split()))
 cnt = 0
 for i in arr:
     idx = s.bisect_left(i)
-    if i >= s[idx]:
-        s.remove(s[idx])
+    if idx == len(s):
+        s.remove(s[idx-1])
         cnt += 1
+        continue
+
+    s.remove(s[idx])
+    cnt += 1
+
  
 print(cnt)
