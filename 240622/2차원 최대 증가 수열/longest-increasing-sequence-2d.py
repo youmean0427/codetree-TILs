@@ -29,7 +29,7 @@ for i in range(1, n):
         for x in range(0, i):
             for y in range(0, j):
 
-                if arr[i][j] > arr[x][y]:
+                if arr[i][j] > arr[x][y] and arr[0][0] < arr[x][y]:
                     dp[i][j] = max(dp[i][j], dp[x][y] + 1 )
 ans = 0
 for i in dp:
