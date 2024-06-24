@@ -7,5 +7,5 @@ dp[0] = 1
 for i in range(n+1):
     for j in range(3):
         if i >= arr[j]:
-            dp[i] += dp[i-arr[j]]
+            dp[i] = (dp[i] + dp[i-arr[j]]) % 10007
 print(dp[n])
