@@ -10,4 +10,7 @@ for i in range(m+1):
         if i >= arr[j]:
             dp[i] = max(dp[i], dp[i-arr[j]] + 1)
 
-print(dp[m])
+if dp[m]:
+    print(dp[m])
+else:
+    print(-1)
