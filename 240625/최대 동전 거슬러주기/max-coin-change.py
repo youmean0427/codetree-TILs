@@ -12,7 +12,7 @@ for i in range(m+1):
             dp[i] = max(dp[i], dp[i-arr[j]] + 1)
 
 
-if dp[m]:
-    print(dp[m])
-else:
+if dp[m] == float('-inf'):
     print(-1)
+else:
+    print(dp[m])
