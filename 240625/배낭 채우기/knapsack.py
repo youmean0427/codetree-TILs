@@ -2,7 +2,8 @@ n, m = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(n)]
 dp = [[float('-inf') for _ in range(m+1)] for _ in range(n)]
 
-dp[0][arr[0][0]] = arr[0][1] 
+if m >= arr[0][0]:
+    dp[0][arr[0][0]] = arr[0][1] 
 dp[0][0] = 0
 for i in range(1, n):
     
