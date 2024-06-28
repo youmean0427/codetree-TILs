@@ -4,8 +4,8 @@ const input = fs.readFileSync(0).toString().trim().split("\n")
 const n = parseInt(input[0])
 const arr = [0].concat(input[1].split(" ").map(Number))
 
-
 // i번째 동전, 1계단으로 j번 이동한 최대값
+// dp[i][j] : i번 위치에 도착했을 때, 정확히 j번 1계단 올랐을 때의 최대값
 const dp = Array.from({length : n+1}, () => Array(5).fill(0))
 
 
@@ -24,7 +24,7 @@ for (let i = 3; i <= n; i++) {
 }
 
 ans = 0
-for (i of dp) {
-    ans = Math.max(ans, Math.max(...i))
+for (let i = 0; i <= 3; i++) {
+    ans = Math.max(ans, dp[n][i])
 }
 console.log(ans)
