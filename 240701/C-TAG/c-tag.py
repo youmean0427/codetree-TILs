@@ -20,13 +20,13 @@ for i in range(M-2):
             sa = set()
             sb = set()
 
-            for idx in range(3):
+            for idx in range(N):
                 sum_a = a[idx][i] + a[idx][j] + a[idx][l]
                 sa.add(sum_a)
 
                 sum_b = b[idx][i] + b[idx][j] + b[idx][l]
                 sb.add(sum_b)
-
+   
             if check(sa, sb):
                 ans += 1
             
