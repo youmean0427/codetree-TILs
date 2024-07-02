@@ -10,14 +10,9 @@ cnt = 0
 
 for i in arr:
 
-    idx = s.bisect_left(i)
-
-    while idx >= 0:
-        if visited[idx] == 0:
-            visited[idx] = 1
-            cnt += 1
-            break
-        else:
-            idx -= 1
-
+    idx = s.bisect_right(i)-1
+    if idx >= 0:
+        s.remove(s[idx])
+        cnt += 1
+    
 print(cnt)
