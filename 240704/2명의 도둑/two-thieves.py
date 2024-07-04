@@ -5,50 +5,40 @@ visited = [[0 for _ in range(N)] for _ in range(N)]
 # M개의 연속한 물건
 # C의 최대무게
 
-
-def math(arr):
+def multi(sm):
     total = 0
-    weight = 0
-    for i in arr:
-        weight += i
+    for i in sm:
         total += i * i
-        if weight > C:
-            weight -= i
-            total -= i * i
     return total
 
-def back(cnt, sm, row, idx, location):
-    global first, first_loca
+# 물건은 연속적이지 않아도됨
+def back(b_arr, cnt, sm, start):
+    global max_val, pos
+    if cnt >= len(b_arr):
+        if sum(sm) <= C:
+            if max_val < multi(sm):
+                max_val = multi(sm)
+                pos = start
 
-    if cnt == M:    
-        if first < math(*sm):
-            first = math(*sm)
-            first_loca = location[0] 
-            
         return
     
-    for i in range(N-M+1):
-        if visited[row][i:i+M] == [0] * M:
-            sm.append(arr[row][i:i+M])
-            location.append((row, i))
-            back(cnt+M, sm, row, idx, location)
-            location.pop()
-            sm.pop()
+    back(b_arr, cnt+1, sm+[b_arr[cnt]], start)
+    back(b_arr, cnt+1, sm, start)
+
 
 ans = 0
 for _ in range(2):
-    first = 0
-    first_loca = (0, 0)
-
+    max_val = 0
+    pos = (0, 0)
     for i in range(N):
-        back(0, [], i, 0, [])
+        for j in range(N-M+1):
+            if 1 in visited[i][j:j+M]:
+                continue
+            else:
+                line = arr[i][j:j+M]
+                back(line, 0, [], (i,j))   
 
-    start_x = first_loca[0]
-    start_y = first_loca[1]
-
-    for i in range(start_y, start_y+M):
-        visited[start_x][i] = 1
-
-    ans += first
+    ans += max_val
+    visited[pos[0]][pos[1]:pos[1]+M] = [1] * M
 
 print(ans)
