@@ -2,6 +2,7 @@ n, m = map(int, input().split())
 arr = list(map(int, input().split()))
 targets = list(map(int, input().split()))
 
+arr.sort()
 
 # 최초로 등장하는 위치 : Lower Bound
 def binary_search(arr, target):
@@ -17,7 +18,7 @@ def binary_search(arr, target):
             right = mid - 1
         elif arr[mid] == target:
             right = mid - 1
-            min_idx = min(min_idx, mid+1)
+            min_idx = min(min_idx, mid)
         else:
             left = mid + 1
     return min_idx
@@ -28,4 +29,4 @@ for i in targets:
     if ans >= n:
         print(-1)
     else:
-        print(ans)
+        print(ans+1)
