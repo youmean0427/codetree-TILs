@@ -2,6 +2,7 @@ n, m  = map(int, input().split())
 dots = list(map(int, input().split()))
 lines = []
 
+dots.sort()
 for _ in range(m):
     lines.append(list(map(int, input().split())))
 
@@ -32,7 +33,6 @@ for s, e in lines:
     end = binary_sort(e)
 
     ans = end - start
-    
     if end < n:
         if dots[end] == e:
             ans += 1
