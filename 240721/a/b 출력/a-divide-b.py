@@ -34,4 +34,4 @@ while(len(ans) < 20):
     
     i += 1
 
-print(res + ans)
+print(res + ans[:20])
