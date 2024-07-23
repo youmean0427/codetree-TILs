@@ -45,8 +45,9 @@ for i in range(q):
         
         if shelf[a].head:
             sh = shelf[a].head
-            shelf[a].head.next.prev = None
-            shelf[a].head = shelf[a].head.next
+            if shelf[a].count != 1:
+                shelf[a].head.next.prev = None
+                shelf[a].head = shelf[a].head.next
             sh.next = None
 
             if shelf[b].tail:
@@ -64,8 +65,9 @@ for i in range(q):
     elif x == 2:
          if shelf[a].tail:
             sh = shelf[a].tail
-            shelf[a].tail.prev.next = None
-            shelf[a].tail = shelf[a].tail.prev
+            if shelf[a].count != 1:
+                shelf[a].tail.prev.next = None
+                shelf[a].tail = shelf[a].tail.prev
             sh.prev = None
 
             if shelf[b].head:
@@ -91,9 +93,12 @@ for i in range(q):
                 shelf[b].head.prev = st
                 st.next = shelf[b].head
                 shelf[b].head = sh
+                shelf[b].head.prev = None
             else:
                 shelf[b].head = sh
                 shelf[b].tail = st
+                sh.prev = None
+                st.next = None
 
             if a != b:    # 같은 책꽂이가 아닐 경우에만, 실행
                 shelf[b].count += shelf[a].count
@@ -110,9 +115,13 @@ for i in range(q):
                 shelf[b].tail.next = sh
                 sh.prev = shelf[b].tail
                 shelf[b].tail = st
+                shelf[b].tail.next = None
             else:
                 shelf[b].head = sh
                 shelf[b].tail = st
+                sh.prev = None
+                st.next = None
+
             if a != b:
                 shelf[b].count += shelf[a].count
                 shelf[a].count = 0
