@@ -48,6 +48,9 @@ for i in range(q):
             if shelf[a].count != 1:
                 shelf[a].head.next.prev = None
                 shelf[a].head = shelf[a].head.next
+            else:
+                shelf[a].head = None
+                shelf[a].tail = None
             sh.next = None
 
             if shelf[b].tail:
@@ -68,6 +71,9 @@ for i in range(q):
             if shelf[a].count != 1:
                 shelf[a].tail.prev.next = None
                 shelf[a].tail = shelf[a].tail.prev
+            else:
+                shelf[a].head = None
+                shelf[a].tail = None
             sh.prev = None
 
             if shelf[b].head:
