@@ -5,9 +5,11 @@ int main() {
 
     for (int i = 0; i < 10; i++) {
         int a;
-        scanf("%d", &a);
-        arr[i] = a;
-        sum_val += arr[i];
+        scanf("%d", &arr[i]);
+    }
+
+    for (int idx = 0; idx < 10; idx++) {
+        sum_val += arr[idx];
     }
 
     printf("%d", sum_val);
