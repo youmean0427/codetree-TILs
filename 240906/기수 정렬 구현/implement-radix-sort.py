@@ -1,6 +1,16 @@
 n = int(input())
 arr = list(input().split())
-k = len(arr[0])
+
+k = 0
+for i in arr:
+    k = max(len(i), k)
+
+for i in range(n):
+    if (len(arr[i]) < k):
+        x = ''
+        while (len(x) + len(arr[i]) != k):
+            x += '0'
+        arr[i] = x + arr[i]
 
 for pos in range(k-1, -1, -1):
     arr_new = [[] for _ in range(10)]
