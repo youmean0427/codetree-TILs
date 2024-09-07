@@ -78,13 +78,13 @@ void    pop_front(doubly_list *list)
         return ;
     else if (list->size == 1)
     {
-        printf("%d", list->head->data);
+        printf("%d\n", list->head->data);
         list->head = NULL;
         list->tail = NULL;
         list->size--;
     }
     else {
-        printf("%d", list->head->data);
+        printf("%d\n", list->head->data);
         list->head = list->head->next;
         list->head->prev = NULL;
         list->size--;
@@ -97,40 +97,41 @@ void    pop_back(doubly_list *list)
         return ;
     else if (list->size == 1)
     {
-        printf("%d", list->tail->data);
+        printf("%d\n", list->tail->data);
         list->head = NULL;
         list->tail = NULL;
         list->size--;
     }
     else
     {
-        printf("%d", list->tail->data);
+        printf("%d\n", list->tail->data);
         list->tail = list->tail->prev;
         // list->tail->next->prev = NULL;
         list->tail->next = NULL;
         list->size--;
     }
+    return ;
 }
 
 void    size(doubly_list *list)
 {
-    printf("%d", list->size);
+    printf("%d\n", list->size);
     return ;
 }
 
 void    empty(doubly_list *list)
 {
     if (list->size)
-        printf("0");
+        printf("0\n");
     else
-        printf("1");
+        printf("1\n");
     return ;
 }
 
 void    front(doubly_list *list)
 {
     if (list->size)
-        printf("%d", list->head->data);
+        printf("%d\n", list->head->data);
     else
         return ;
 }
@@ -138,7 +139,7 @@ void    front(doubly_list *list)
 void    back(doubly_list *list)
 {
     if (list->size)
-        printf("%d", list->tail->data);
+        printf("%d\n", list->tail->data);
     else
         return ;
 }
@@ -146,7 +147,7 @@ void    back(doubly_list *list)
 int main() {
     
     int n;
-    char *s;
+    char s[20];
     int d;
     doubly_list d_list;
 
