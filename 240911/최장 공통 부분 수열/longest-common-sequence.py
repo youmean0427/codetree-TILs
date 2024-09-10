@@ -25,9 +25,10 @@ for i in range(1, B_len):
     for j in range(1, A_len):
         if (A[j] == B[i]):
             dp[i][j] = dp[i-1][j-1] + 1
-            ans = max(ans , dp[i][j])
         else:
             dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-            ans = max(ans, dp[i][j])
 
+for i in dp:
+    ans = max(ans, max(i))
+    
 print(ans)
