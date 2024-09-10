@@ -19,7 +19,7 @@ for j in range(B_len):
         dp[j][0] = 1
     else:
         if (j-1 >= 0):
-            dp[j][0] = dp[0][j-1]
+            dp[j][0] = dp[j-1][0]
 
 for i in range(1, B_len):
     for j in range(1, A_len):
@@ -30,5 +30,5 @@ for i in range(1, B_len):
 
 for i in dp:
     ans = max(ans, max(i))
-    
+
 print(ans)
