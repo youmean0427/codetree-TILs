@@ -10,24 +10,22 @@ function quick_sort(start, end)
 
     let i = start + 1
     let j = end
-    if (start < end)
+  
+    while(i <= j)
     {
-        while(i <= j)
-        {
-            while (i <= j && arr[i] <= pivot)
-                i++
-            while (i <= j && arr[j] >= pivot)
-                j--
+        while (i <= j && arr[i] <= pivot)
+            i++
+        while (i <= j && arr[j] >= pivot)
+            j--
 
-            if (i < j)
-            {
-                temp = arr[i]
-                arr[i] = arr[j]
-                arr[j] = temp
-            }
+        if (i < j)
+        {
+            temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
         }
     }
-    
+
     temp = arr[j]
     arr[j] = arr[start]
     arr[start] = temp
@@ -40,8 +38,8 @@ function quick(start, end)
     if (start < end)
     {
         idx = quick_sort(start, end)
-        quick_sort(start, idx - 1)
-        quick_sort(idx + 1, end)
+        quick(start, idx - 1)
+        quick(idx + 1, end)
     }
 }
 
