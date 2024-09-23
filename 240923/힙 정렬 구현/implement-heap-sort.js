@@ -25,7 +25,7 @@ function heapify(n, i)
     }
 }
 
-for (let i = n / 2; i >= 0; i--)
+for (let i = parseInt(n / 2); i >= 0; i--)
     heapify(n, i)
 
 for (let i = n - 1; i >= 0; i--)
