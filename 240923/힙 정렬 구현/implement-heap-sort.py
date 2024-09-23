@@ -20,5 +20,5 @@ for i in range(n//2, -1, -1):
 
 for i in range(n-1, -1, -1):
     arr[0], arr[i] = arr[i], arr[0]
-    heapify(i-1, 1)
-    print(arr)
+    heapify(i-1, 0)
+print(*arr)
