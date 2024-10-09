@@ -1,31 +1,32 @@
 n = int(input())
-arr = list(map(int, input().split()))
+inp = list(map(int, input().split()))
 x = int(input())
+edges = [[] for _ in range(n)]
+deleted = [0 for _ in range(n)]
 
-link = [[] for _ in range(n)]
-delete = [0 for _ in range(n)]
-del_nums = []
-for i in range(n):
-    if (arr[i] != -1):
-        link[arr[i]].append(i)
-
-def dfs(start):
-
-    stack = [start]
-    while (stack):
-        x = stack.pop()
-        delete[x] = 1
-        del_nums.append(x)
-        for i in link[x]:
-            if (delete[i] == 0):
-                stack.append(i)
-
-dfs(x)
-cnt = 0
+deleted[x] = 1
+ans = 0
 
 for i in range(n):
-    if delete[i] == 0 :
-        if (len(link[i]) == 1 and link[i][0] in del_nums) or link[i] == []:
-            cnt += 1
+    x, y = i, inp[i]
+    if y == -1:
+        root = x
+        continue
+    edges[y].append(x)
 
-print(cnt)
+def dfs(x):
+    global ans
+    if (deleted[x]):
+        return
+    
+    leaf = 1
+    for i in edges[x]:
+        if deleted[i] == 0:
+            dfs(i)
+            leaf = 0
+
+    if (leaf):
+        ans += 1
+
+dfs(root)
+print(ans)
