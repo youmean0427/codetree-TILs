@@ -6,7 +6,7 @@ j = 1
 ans = arr[i]
 l = float('inf')
 
-while (i <= j):
+while (1):
 
     if i >= n:
         break
