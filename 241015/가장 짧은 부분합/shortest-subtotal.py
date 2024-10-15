@@ -6,15 +6,15 @@ j = 1
 ans = arr[i]
 l = float('inf')
 
-while (1):
+while (i <= j):
 
     if i >= n:
         break
     if j < n:
         if (ans >= s):
             l = min(l, j - i)
-            i += 1
             ans -= arr[i]
+            i += 1
             continue
     
     if (j < n):
