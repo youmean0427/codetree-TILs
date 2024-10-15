@@ -6,7 +6,7 @@ sub = list(map(int, input().split()))
 i = 0
 j = 0
 
-while (i < n and j < n):
+while (i < n and j < m):
     
     if (arr[i] == sub[j]):
         i += 1
