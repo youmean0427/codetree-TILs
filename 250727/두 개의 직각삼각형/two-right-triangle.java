@@ -11,12 +11,9 @@ public class Main {
             {
                 System.out.print("*");
             }
-            for (int cnt = 0; cnt < 2; cnt++)
-            {
-            for (int l = 0; l < n-i; l++)
+            for (int l = 0; l < 2*(n-i); l++)
             {
                 System.out.print(" ");
-            }
             }
             for (int j = 0; j < i; j++)
             {
