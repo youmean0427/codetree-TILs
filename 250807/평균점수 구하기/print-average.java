@@ -10,6 +10,6 @@ public class Main {
             sum += sc.nextDouble();
         }
         
-        System.out.print(sum/8);
+        System.out.printf("%.1f", sum/8);
     }
 }
