@@ -13,12 +13,12 @@ public class Main {
             {
                 if (i % 2 != 0)
                 {    
-                    System.out.print(ans);
+                    System.out.print(ans + " ");
                     ans+=1;
                 }
                 else
                 {
-                    System.out.print(ans);
+                    System.out.print(ans + " ");
                     ans-=1;
                 }
             }
