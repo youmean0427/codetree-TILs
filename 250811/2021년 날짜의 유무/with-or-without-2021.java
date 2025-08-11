@@ -28,7 +28,11 @@ public class Main {
         {
             return dayCheck(day, 28);
         }
-        else
+        else if (mon >= 13)
+        {
+            return 0;
+        }
+        else 
         {
             return dayCheck(day, 30);
         }
