@@ -41,6 +41,8 @@ public class Main {
                     j = 0;
             }
         }
+        if (j == n2)
+            return 1;
         return 0;
     }
 }
