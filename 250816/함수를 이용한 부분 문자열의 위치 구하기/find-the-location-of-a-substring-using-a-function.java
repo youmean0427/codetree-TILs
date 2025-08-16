@@ -14,24 +14,24 @@ public class Main {
     {
             for (int i = 0; i <= text.length() - pattern.length(); i++)
             {
-                int k = i;
-                for (int j = 0; j <= pattern.length(); j++)
+                int flag = 0;                
+                for(int j = 0; j < pattern.length(); j++)
                 {
-                    if (j == pattern.length())
+                    if (text.charAt(i + j) != pattern.charAt(j))
                     {
-                        ans = k - pattern.length();
-                        return;
-                    }
-                    if (text.charAt(k) == pattern.charAt(j))
-                    {
-                        k++;
-                    }
-                    else {
+                        flag = 0;
                         break;
                     }
+                    else
+                        flag = 1;
+                }
+
+                if (flag == 1)
+                {
+                    ans = i;
+                    return;
                 }
             }
-            return;
 
     }
 }
