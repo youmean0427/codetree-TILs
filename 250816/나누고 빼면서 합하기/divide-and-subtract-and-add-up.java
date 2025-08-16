@@ -14,7 +14,8 @@ public class Main {
     }
 
     public static void func(int cnt, int[] arr){
-        ans = arr[cnt-1];
+        ans = arr[cnt];
+
         while(cnt > 1)
         {
             if (cnt % 2 == 0)
@@ -25,8 +26,7 @@ public class Main {
             {
                 cnt -= 1;
             }
-            ans += arr[cnt-1];
-            System.out.println(ans);
+            ans += arr[cnt];
         }
     }
 }
