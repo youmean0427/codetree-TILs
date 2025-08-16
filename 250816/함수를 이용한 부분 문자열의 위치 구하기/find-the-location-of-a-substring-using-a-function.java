@@ -1,37 +1,37 @@
 import java.util.Scanner;
 public class Main {
+    public static int ans = -1;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String text = sc.next();
         String pattern = sc.next();
         
-        int ans = func(text, pattern);
+        func(text, pattern);
         System.out.print(ans);
     }
 
-    public static int func(String text, String pattern)
+    public static void func(String text, String pattern)
     {
-            int i = 0;
-            int j = 0;
-
-            while (i <= text.length())
+            for (int i = 0; i <= text.length() - pattern.length(); i++)
             {
-                if (j == pattern.length())
-                    return i - pattern.length();
-                if (i == text.length())
-                    return -1;
-                if (text.charAt(i) == pattern.charAt(j))
+                int k = i;
+                for (int j = 0; j <= pattern.length(); j++)
                 {
-                    i++;
-                    j++;
-                }
-                else
-                {
-                    i++;
-                    j = 0;
+                    if (j == pattern.length())
+                    {
+                        ans = k - pattern.length();
+                        return;
+                    }
+                    if (text.charAt(k) == pattern.charAt(j))
+                    {
+                        k++;
+                    }
+                    else {
+                        break;
+                    }
                 }
             }
-            return -1;
+            return;
 
     }
 }
