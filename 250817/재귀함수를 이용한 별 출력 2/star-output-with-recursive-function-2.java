@@ -4,7 +4,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         func1(n);
-        func2(n);
+
     }
 
 
@@ -18,13 +18,6 @@ public class Main {
         }
         System.out.println();
         func1(n-1);   
-    }
-
-    public static void func2(int n)
-    {
-        if (n == 0)
-            return;
-        func2(n-1);
         for (int i = 0; i < n; i++)
         {
             System.out.print("* ");
