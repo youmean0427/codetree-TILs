@@ -1,6 +1,5 @@
 import java.util.Scanner;
 public class Main {
-    public static int maxValue = 0;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -16,15 +15,13 @@ public class Main {
     {
         if (n == 0)
             return arr[0];
-        if (arr[n] < maxValue)
-            return F(n-1, arr);
-        if (F(n-1, arr) < arr[n] )
-        {
-            maxValue = arr[n];   
+        int tmp = F(n-1, arr);
+        if (tmp < arr[n])
+        {  
             return arr[n];
         }
         else
-            return F(n-1, arr);        
+            return tmp;        
 
     }
 }
