@@ -4,7 +4,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         
-        System.out.print(F(n) % 100);
+        System.out.print(F(n));
     }
 
     public static int F(int n)
@@ -13,6 +13,6 @@ public class Main {
             return 2;
         if (n == 2)
             return 4;
-        return F(n-1) * F(n-2);
+        return (F(n-1)) * (F(n-2)) % 100;
     }
 }
