@@ -23,7 +23,7 @@ public class Main {
                 ans.day = c[i].day;
                 ans.weather = c[i].weather;   
             }
-            else if (c[i].date.split("-")[0].compareTo(ans.date) < 0 && c[i].weather == "Rain")
+            else if (c[i].date.compareTo(ans.date) < 0 && c[i].weather.equals("Rain"))
             {
                 ans.date = c[i].date;
                 ans.day = c[i].day;
