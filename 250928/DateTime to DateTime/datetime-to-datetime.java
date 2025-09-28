@@ -13,6 +13,10 @@ public class Main {
         int b = 11;
         int c = 11;
 
+        if (A < a || (A == 11 && B < b) || (A == 11 && B == 11 && C < c))
+            min = -1;
+        else
+        { 
         while (true)
         {
             if (a == A && b == B && c == C)
@@ -32,7 +36,7 @@ public class Main {
                 b=0;
             }
         }
-
+        }
         System.out.print(min);
     }
 }
