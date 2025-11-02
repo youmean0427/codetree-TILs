@@ -10,15 +10,27 @@ public class Main {
         for (int i = 0; i < N; i++) {
             int x = sc.nextInt();
             char d = sc.next().charAt(0);
-            len += x;
+
+            if (d == 'R')
+            {
+                len += x;   
+            }
+            else if (d == 'L')
+            {
+                len += Math.abs(len - x);
+            }
+
             xArr[i] = x;
             dArr[i] = d;
         }
+  
+        int[] xLine = new int[len];
+        char[] dLine = new char[len];
+        int[] wLine = new int[len];
+        int[] bLine = new int[len]; 
 
-        int[] xLine = new int[len * 2];
-        char[] dLine = new char[len * 2];
 
-        int start = len;
+        int start = len / 2;
         for (int i = 0; i < N; i++)
         {
             if (dArr[i] == 'R') {
@@ -26,14 +38,16 @@ public class Main {
                 {
                     xLine[j] += 1;
                     dLine[j] = 'B';
+                    bLine[j] += 1;
                 }
                 start = start + xArr[i] - 1;
             }
-            else {
+            else if (dArr[i] == 'L') {
                 for (int j = start - xArr[i] + 1; j <= start; j++)
                 {
                     xLine[j] += 1;
                     dLine[j] = 'W';
+                    wLine[j] += 1;
                 }
                 start = start - xArr[i] + 1;
             }
@@ -43,12 +57,12 @@ public class Main {
         int black = 0;
         int gray = 0;
 
-        for (int k = 0; k < len * 2; k++) {
+        for (int k = 0; k < len; k++) {
             
-            if (xLine[k] >= 4)
+            if (wLine[k] >= 2 && bLine[k] >= 2)
             {
                 gray += 1;
-                dLine[k] = 'N';
+                dLine[k] = 'G';
             }
             else if (dLine[k] == 'W')
             {
@@ -59,7 +73,7 @@ public class Main {
                 black += 1;
             }
         }
-
+        
         System.out.print(white + " " + black + " " + gray);
     }
 }
