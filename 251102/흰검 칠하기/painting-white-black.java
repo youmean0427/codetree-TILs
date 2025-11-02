@@ -10,16 +10,10 @@ public class Main {
         for (int i = 0; i < N; i++) {
             int x = sc.nextInt();
             char d = sc.next().charAt(0);
-
-            if (d == 'R')
-                len += x;   
-            else if (d == 'L')
-                len += Math.abs(len - x);
-
             xArr[i] = x;
             dArr[i] = d;
         }
-  
+        len = 200000;
         Info[] ans = new Info[len];
         for (int i = 0; i < len; i++)
             ans[i] = new Info(0, 0, 'N');
