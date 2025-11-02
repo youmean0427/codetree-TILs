@@ -6,17 +6,19 @@ public class Main {
         int[] xArr = new int[N];
         char[] dArr = new char[N];
         
-        int len = 0;
+        int len = 200000;
         for (int i = 0; i < N; i++) {
             int x = sc.nextInt();
             char d = sc.next().charAt(0);
+
             xArr[i] = x;
             dArr[i] = d;
         }
-        len = 200000;
-        Info[] ans = new Info[len];
-        for (int i = 0; i < len; i++)
-            ans[i] = new Info(0, 0, 'N');
+  
+        char[] dLine = new char[len];
+        int[] wLine = new int[len];
+        int[] bLine = new int[len]; 
+
 
         int start = len / 2;
         for (int i = 0; i < N; i++)
@@ -24,16 +26,16 @@ public class Main {
             if (dArr[i] == 'R') {
                 for (int j = start; j <= start + xArr[i] - 1; j++)
                 {
-                    ans[j].now = 'B';
-                    ans[j].black += 1;
+                    dLine[j] = 'B';
+                    bLine[j] += 1;
                 }
                 start = start + xArr[i] - 1;
             }
             else if (dArr[i] == 'L') {
                 for (int j = start - xArr[i] + 1; j <= start; j++)
                 {
-                    ans[j].now = 'W';
-                    ans[j].white += 1;
+                    dLine[j] = 'W';
+                    wLine[j] += 1;
                 }
                 start = start - xArr[i] + 1;
             }
@@ -45,26 +47,22 @@ public class Main {
 
         for (int k = 0; k < len; k++) {
             
-            if (ans[k].white >= 2 && ans[k].black >= 2)
+            if (wLine[k] >= 2 && bLine[k] >= 2)
+            {
                 gray += 1;
-            else if (ans[k].now == 'W')
+                dLine[k] = 'G';
+            }
+            else if (dLine[k] == 'W')
+            {
                 white += 1;
-            else if (ans[k].now == 'B')
+            }
+            else if (dLine[k] == 'B')
+            {
                 black += 1;
+            }
         }
+        
         System.out.print(white + " " + black + " " + gray);
     }
-
-    static class Info {
-        int black;
-        int white;
-        char now;
-
-        public Info(int b, int w, char n)
-        {
-            this.black = b;
-            this.white = w;
-            this.now = n;
-        } 
-    }
 }
+
