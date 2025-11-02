@@ -24,7 +24,6 @@ public class Main {
             dArr[i] = d;
         }
   
-        int[] xLine = new int[len];
         char[] dLine = new char[len];
         int[] wLine = new int[len];
         int[] bLine = new int[len]; 
@@ -36,7 +35,6 @@ public class Main {
             if (dArr[i] == 'R') {
                 for (int j = start; j <= start + xArr[i] - 1; j++)
                 {
-                    xLine[j] += 1;
                     dLine[j] = 'B';
                     bLine[j] += 1;
                 }
@@ -45,7 +43,6 @@ public class Main {
             else if (dArr[i] == 'L') {
                 for (int j = start - xArr[i] + 1; j <= start; j++)
                 {
-                    xLine[j] += 1;
                     dLine[j] = 'W';
                     wLine[j] += 1;
                 }
