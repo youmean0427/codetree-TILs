@@ -47,8 +47,8 @@ public class Main {
                 {
                     xMin = Math.min(OFFSET-i, xMin);
                     xMax = Math.max(OFFSET-i, xMax);
-                    yMin = Math.min(j - OFFSET, yMin);
-                    yMax = Math.max(j - OFFSET, yMax);
+                    yMin = Math.min(OFFSET-j, yMin);
+                    yMax = Math.max(OFFSET-j, yMax);
                 }
             }  
         }
