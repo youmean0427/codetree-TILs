@@ -34,10 +34,10 @@ public class Main {
             }
         }
 
-        int xLen = 0;
-        int yLen = 0;
-        int x = 0;
-        int y = 0;
+        int xMin = 2001;
+        int xMax = -1;
+        int yMin = 2001;
+        int yMax = -1;
 
         for (int i = 0; i <= 2000; i++)
         {
@@ -45,16 +45,13 @@ public class Main {
             {
                 if (ARR[i][j] == 1)
                 {
-                    xLen = 1;
-                    yLen += 1;
+                    xMin = Math.min(OFFSET-i, xMin);
+                    xMax = Math.max(OFFSET-i, xMax);
+                    yMin = Math.min(j - OFFSET, yMin);
+                    yMax = Math.max(j - OFFSET, yMax);
                 }
             }  
-            y = Math.max(y, yLen);
-            yLen = 0;
-            x += xLen;
-            xLen = 0;
         }
-
-        System.out.print(x * y);
-    }
+        System.out.print((xMax - xMin + 1) * (yMax - yMin + 1));
+    } 
 }
