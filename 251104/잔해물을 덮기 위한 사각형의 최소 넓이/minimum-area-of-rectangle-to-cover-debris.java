@@ -38,6 +38,7 @@ public class Main {
         int xMax = -1;
         int yMin = 2001;
         int yMax = -1;
+        int flag = 0;
 
         for (int i = 0; i <= 2000; i++)
         {
@@ -49,11 +50,18 @@ public class Main {
                     xMax = Math.max(i, xMax);
                     yMin = Math.min(j, yMin);
                     yMax = Math.max(j, yMax);
+                    flag = 1;
                 }
             }  
         }
 
-        // System.out.print(xMin);
-        System.out.print((xMax - xMin + 1) * (yMax - yMin + 1));
+        if (flag == 1)
+        {
+            System.out.print((xMax - xMin + 1) * (yMax - yMin + 1));
+        }
+        else
+        {
+            System.out.print(0);
+        }
     } 
 }
