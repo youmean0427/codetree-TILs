@@ -45,13 +45,15 @@ public class Main {
             {
                 if (ARR[i][j] == 1)
                 {
-                    xMin = Math.min(OFFSET-i, xMin);
-                    xMax = Math.max(OFFSET-i, xMax);
-                    yMin = Math.min(OFFSET-j, yMin);
-                    yMax = Math.max(OFFSET-j, yMax);
+                    xMin = Math.min(i, xMin);
+                    xMax = Math.max(i, xMax);
+                    yMin = Math.min(j, yMin);
+                    yMax = Math.max(j, yMax);
                 }
             }  
         }
+
+        // System.out.print(xMin);
         System.out.print((xMax - xMin + 1) * (yMax - yMin + 1));
     } 
 }
