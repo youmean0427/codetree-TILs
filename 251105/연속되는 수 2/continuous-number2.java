@@ -25,7 +25,7 @@ public class Main {
                 cnt = 1;
             }
         }
-
+        ans = Math.max(ans, cnt);
         System.out.print(ans);
     }
 }
