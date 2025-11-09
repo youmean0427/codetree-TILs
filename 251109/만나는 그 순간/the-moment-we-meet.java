@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] a = new int[1000000];
+        int[] a = new int[1000001];
         Arrays.fill(a, Integer.MAX_VALUE);
-        int[] b = new int[1000000];
+        int[] b = new int[1000001];
         Arrays.fill(b, Integer.MIN_VALUE);
         int n = sc.nextInt();
         int m = sc.nextInt();
