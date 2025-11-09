@@ -3,51 +3,81 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] a = new int[2001];
-        int[] b = new int[2001];
+        int[] a = new int[1001];
+        int[] b = new int[1001];
         int n = sc.nextInt();
         int m = sc.nextInt();
 
-        int offset = 1000;
-        int aStart = 1000;
-        int bStart = 1000;
-        int time = 1;
+  
+        int time  = 1;
+        int aNow = 0;
         for (int i = 0; i < n; i++)
         {
             char c = sc.next().charAt(0);
             int t = sc.nextInt();
 
-            if (c == 'R')
+            if (c == 'R') {
+                aNow += 1;            
+            for (int j = 1; j <= t; j++)
             {
-                for (int j = aStart; j < t +offset; j++)
-                {
-                    a[j] = time;
-                    time++;
-                }
-                aStart = t + offset;
+                a[time] = aNow;
+                time++;
+                if (j != t)
+                    aNow++;
+            }
             }
             else
             {
-                for (int j = aStart; j > aStart - t; j--)
+                aNow -= 1;
+                for (int j = 1; j <= t; j++)
                 {
-                    a[j] = time;
+                    a[time] = aNow;
                     time++;
+                    if (j!=t)
+                        aNow--;
                 }
-                aStart = aStart  - t;
             }
-            
-            for (int k = 1000; k <= 1012; k++)
+        }
+        
+        time  = 1;
+        int bNow = 0;
+        for (int i = 0; i < m; i++)
+        {
+            char c = sc.next().charAt(0);
+            int t = sc.nextInt();
+
+            if (c == 'R') {
+                bNow += 1;            
+            for (int j = 1; j <= t; j++)
             {
-                System.out.print(a[k] + " ");
+                b[time] = bNow;
+                time++;
+                if (j != t)
+                    bNow++;
+            }
+            }
+            else
+            {
+                bNow -= 1;
+                for (int j = 1; j <= t; j++)
+                {
+                    b[time] = bNow;
+                    time++;
+                    if (j!=t)
+                        bNow--;
+                }
             }
         }
 
-        // for (int i = 1000; i <= 1012; i++)
-        // {
-        //     System.out.print(a[i] + " ");
-        // }
-        
-        
-
+        int ans = -1;
+        for (int i = 1; i <= 1000; i++)
+        {
+            if (a[i] == b[i])
+            {
+                ans = i;
+                break;
+            }
+        }
+        System.out.print(ans);
     }
 }
