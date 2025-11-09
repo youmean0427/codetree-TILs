@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] a = new int[1001];
+        int[] a = new int[1000000];
         Arrays.fill(a, Integer.MAX_VALUE);
-        int[] b = new int[1001];
+        int[] b = new int[1000000];
         Arrays.fill(b, Integer.MIN_VALUE);
         int n = sc.nextInt();
         int m = sc.nextInt();
@@ -70,11 +70,10 @@ public class Main {
                 }
             }
         }
-
         
 
         int ans = -1;
-        for (int i = 1; i <= 1000; i++)
+        for (int i = 1; i <= 1000000; i++)
         {
             if (a[i] == b[i])
             {
