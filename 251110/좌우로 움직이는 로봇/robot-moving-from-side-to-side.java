@@ -8,90 +8,59 @@ public class Main {
         int m = sc.nextInt();
         
         int[] aTime = new int[1000001];
-        Arrays.fill(aTime, -1000001);
         int[] bTime = new int[1000001];
-        Arrays.fill(bTime, -1000001);
-        int aNow = 0;
-        int bNow = 0;
-        int now = 1;
-        aTime[0] = 0;
-        bTime[0] = 0;
+        int aNow = 1;
+        int bNow = 1;
+        int ans = 0;
 
         for (int i = 0; i < n; i++) {
             int t = sc.nextInt();
             char d = sc.next().charAt(0);
 
-            for (int j = aNow; j < aNow + t; j++)
+            for (int j = 0; j < t; j++)
             {
                 if (d == 'R')
-                {
-                    aTime[now] = aTime[now-1] + 1;
-                }
+                    aTime[aNow] = aTime[aNow-1] + 1;
                 else
-                {
-                    aTime[now] = aTime[now-1] - 1;
-                }
-                now++;
+                    aTime[aNow] = aTime[aNow-1] - 1;
+                aNow++;
             }
         }
-        int aa = now-1;
-        int lastA = aTime[now-1];
 
-        now = 1;
+
         for (int i = 0; i < m; i++) {
             int t = sc.nextInt();
             char d = sc.next().charAt(0);
-            for (int j = bNow; j < bNow + t; j++)
+            for (int j = 0; j < t; j++)
             {
                 if (d == 'R')
-                {
-                    bTime[now] = bTime[now-1] + 1;
-                }
+                    bTime[bNow] = bTime[bNow-1] + 1;
                 else
-                {
-                    bTime[now] = bTime[now-1] - 1;
-                }
-                now++;
+                    bTime[bNow] = bTime[bNow-1] - 1;
+                bNow++;
             }
         }
-        int lastB = bTime[now-1];
-        int bb = now - 1;
-        int ans = 0;
 
-        if (aa > bb )
+        if (aNow < bNow)
         {
-            for (int i = 1; i < aa; i++)
+            for (int i = aNow; i < bNow; i++)
             {
-                if (i-1 != 0 && aTime[i] == bTime[i])
-                {
-                    if (i-1 != 0 && aTime[i-1] != bTime[i-1])
-                        ans += 1;
-                }
-                if (i > bb && lastB == aTime[i])
-                {
-                    if (aTime[i-1] != lastB)
-                    {
-                        ans += 1;
-                    }
-                }
+                aTime[i] = aTime[i-1];
             }
         }
-        else
+        else if (aNow > bNow)
         {
-            for (int i = 1; i < bb; i++)
+            for (int i = bNow; i < aNow; i++)
             {
-                if (i-1 != 0 && aTime[i] == bTime[i])
-                {
-                    if (i-1 != 0 && aTime[i-1] != bTime[i-1])
-                        ans += 1;
-                }
-                if (i > aa && lastA == bTime[i])
-                {
-                    if (bTime[i-1] != lastA)
-                    {
-                        ans += 1;
-                    }
-                }
+                bTime[i] = bTime[i-1];
+            }
+        }
+
+        for (int i = 1; i < Math.max(aNow, bNow); i++)
+        {
+            if (aTime[i] == bTime[i] && aTime[i-1] != bTime[i-1])
+            {
+                ans++;
             }
         }
 
