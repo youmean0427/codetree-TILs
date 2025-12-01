@@ -36,8 +36,10 @@ public class Main {
             }
             cnt++;
 
-            if (x == 0 && y == 0)
+            if (x == 0 && y == 0) {
                 ans = cnt;
+                break;
+            }
         }
         System.out.print(ans);
     }
