@@ -44,7 +44,7 @@ public class Main {
         {
             startX[idx] = i;
             startY[idx] = 0;
-            startD[idx] = 4;
+            startD[idx] = 0;
             idx++;
         }
 
