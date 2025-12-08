@@ -13,10 +13,10 @@ public class Main {
         }
         int startNum = sc.nextInt();
         
-        int max = (n * 4) + 1
-        char[] startX = new int[max];
-        char[] startY = new int[max];
-        char[] startD = new int[max];
+        int max = (n * 4) + 1;
+        int[] startX = new int[max];
+        int[] startY = new int[max];
+        int[] startD = new int[max];
 
         int idx = 1;
         for (int i = 0; i < n; i++)
@@ -29,13 +29,13 @@ public class Main {
         for (int i = 0; i < n; i++)
         {
             startX[idx] = i;
-            startY[idx] = n;
+            startY[idx] = n-1;
             startD[idx] = 2;
             idx++;
         }
         for (int i = n-1; i >= 0; i--)
         {
-            startX[idx] = n;
+            startX[idx] = n-1;
             startY[idx] = i;
             startD[idx] = 3;
             idx++;
@@ -48,10 +48,34 @@ public class Main {
             idx++;
         }
 
+        int sX = startX[startNum];
+        int sY = startY[startNum];
+        int sD = startD[startNum];
 
-        for (int i = 0; i < (n*4)+1; i++)
+        int[] lTor = new int[]{1, 0, 3, 2};
+        int[] rTol = new int[]{3, 2, 1, 0};
+
+        int[] mX = new int[]{0, 1, 0, -1};
+        int[] mY = new int[]{1, 0, -1, 0};
+
+        int ans = 0;
+        while (sX >= 0 && sX < n && sY >= 0 && sY < n)
         {
-            System.out.print(startX[i]);
+            if (grid[sX][sY] == '\\')
+            {
+                ans += 1;
+                sD = lTor[sD];
+                sX += mX[sD];
+                sY += mY[sD];
+            }
+            else if (grid[sX][sY] == '/')
+            {
+                ans += 1;
+                sD = rTol[sD];
+                sX += mX[sD];
+                sY += mY[sD];
+            }
         }
+        System.out.print(ans);
     }
 } 
