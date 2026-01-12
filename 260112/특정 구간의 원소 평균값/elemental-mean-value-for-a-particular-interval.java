@@ -20,7 +20,7 @@ public class Main {
 
                 avg = (double)sum / (double)cnt;
 
-                for (int k = i; k < n; k++)
+                for (int k = i; k < i+cnt; k++)
                 {
                     if (arr[k] == avg)
                     {
@@ -28,6 +28,7 @@ public class Main {
                         break;
                     }
                 }
+                // System.out.println(avg + " " + sum + " " + cnt);
             }
         }
         System.out.print(ans);
