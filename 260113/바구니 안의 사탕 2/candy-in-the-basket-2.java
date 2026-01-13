@@ -10,7 +10,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             candies[i] = sc.nextInt();
             positions[i] = sc.nextInt();
-            arr[positions[i] +  k] = candies[i];
+            arr[positions[i] +  k] += candies[i];
         }
         int ans = 0;
         for (int i = k; i < 101; i++)
