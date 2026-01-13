@@ -11,7 +11,7 @@ public class Main {
         }
 
         int ans = 0;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < 101; i++)
         {
             int gg = 0;
             int hh = 0;
@@ -22,11 +22,11 @@ public class Main {
                 else if (arr[j] == 'H')
                     hh++;
                 
-                if (gg == hh)
+                if ((gg == hh) || (gg > 0 && hh == 0) || (hh > 0 && gg == 0))
                 {   
-                    if ((arr[i] == 'G' || arr[i] == 'H')) 
+                    if (arr[j] == 'G' || arr[j] == 'H') 
                     {
-                        if ((arr[j] == 'G' || arr[j] == 'H'))
+                        if ((arr[i] == 'G' || arr[i] == 'H'))
                         {
                             ans = Math.max(ans , j - i);
                         }
