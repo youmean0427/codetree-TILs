@@ -13,7 +13,7 @@ public class Main {
             arr[positions[i] +  k] += candies[i];
         }
         int ans = 0;
-        for (int i = k; i < 101; i++)
+        for (int i = k; i < 101+k; i++)
         {
             int sum = 0;
             for (int j = i - k ; j <= i+k; j++)
@@ -26,3 +26,4 @@ public class Main {
         System.out.println(ans);   
     }
 }
+
