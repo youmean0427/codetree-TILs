@@ -18,11 +18,11 @@ public class Main {
             {
                 for (int k = 1; k <= n; k++)
                 {
-                    if (((a + n - i <= 2) || Math.abs(i - a) <= 2) && ((b + n - j <= 2) || Math.abs(j - b) <= 2) && ((c + n - k <= 2) || Math.abs(k - c) <= 2))
+                    if (((n - a + i <= 2) || (a + n - i <= 2) || Math.abs(i - a) <= 2) && ((n - b + j <= 2) || (b + n - j <= 2) || Math.abs(j - b) <= 2) && ((n - c + k <= 2) || (c + n - k <= 2) || Math.abs(k - c) <= 2))
                     {
                             ans++;
                     }
-                    else if (((a2 + n - i <= 2) || Math.abs(i - a2) <= 2) && ((b2 + n - j <= 2) || Math.abs(j - b2) <= 2) && ((c2 + n - k <= 2) || Math.abs(k - c2) <= 2))
+                    else if (( (n - a2 + i <= 2)  || (a2 + n - i <= 2) || Math.abs(i - a2) <= 2) && ((n - b2 + j <= 2)  || (b2 + n - j <= 2) || Math.abs(j - b2) <= 2) && ((n - c2 + k <= 2)  || (c2 + n - k <= 2) || Math.abs(k - c2) <= 2))
                     {
                             ans++;
                     }
