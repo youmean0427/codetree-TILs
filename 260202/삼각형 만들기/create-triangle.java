@@ -9,7 +9,7 @@ public class Main {
             x[i] = sc.nextInt();
             y[i] = sc.nextInt();
         }
-        int ans = 0;
+        double ans = 0;
 
         for (int i = 0; i < n - 2; i++)
         {   
@@ -34,29 +34,42 @@ public class Main {
                     {
                         if (y[l] == y[i])
                         {
-                            ans = Math.max(ans, Math.abs(y[i] - y[j]) * Math.abs(x[l] - x[i]) / 2);  
+                            ans = Math.max(ans, Math.abs(y[i] - y[j]) * Math.abs(x[l] - x[i]) / 2.0);  
                         }
                         else if (y[l] == y[j])
                         {
-                            ans = Math.max(ans, Math.abs(y[i] - y[j]) * Math.abs(x[l] - x[j]) / 2);  
+                            ans = Math.max(ans, Math.abs(y[i] - y[j]) * Math.abs(x[l] - x[j]) / 2.0);  
                         }
                     }    
                     else if (yMatch == 1)
                     {
                         if (x[l] == x[i])
                         {
-                            ans = Math.max(ans, Math.abs(x[i] - x[j]) * Math.abs(y[l] - y[i]) / 2); 
+                            ans = Math.max(ans, Math.abs(x[i] - x[j]) * Math.abs(y[l] - y[i]) / 2.0); 
                         }
                         else if (x[l] == x[j])
                         {
-                            ans = Math.max(ans, Math.abs(x[i] - x[j]) * Math.abs(y[l] - y[j]) / 2);  
+                            ans = Math.max(ans, Math.abs(x[i] - x[j]) * Math.abs(y[l] - y[j]) / 2.0);  
                         }
+                    }
+                    else if (xMatch == 0 || yMatch == 0)
+                    {
+                        if (x[l] == x[i] && y[l] ==y[j])
+                        {
+                             ans = Math.max(ans, Math.abs(y[i] - y[l]) * Math.abs(x[l] - x[j]) / 2.0);  
+                        }
+                        else if (x[l] == x[j] && y[l] == y[i])
+                        {
+                            ans = Math.max(ans, Math.abs(y[j] - y[l]) * Math.abs(x[l] - x[i]) / 2.0);  
+                        }
+
+
                     }
                 }
             }
         }
 
-        System.out.println(ans * 2);
+        System.out.println((int)(ans * 2));
     
     }
 }
