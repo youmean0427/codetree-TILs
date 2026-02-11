@@ -6,7 +6,8 @@ public class Main {
         int M = sc.nextInt();
         int D = sc.nextInt();
         int S = sc.nextInt();
-        int[][] cheese = new int [D+1][3];
+        int[][] cheese = new int[D+1][3];
+        int[][] cheeseEat = new int[M+1][N+1];
         for (int i = 0; i < D; i++) {
             int p = sc.nextInt();
             int m = sc.nextInt();
@@ -20,8 +21,11 @@ public class Main {
         int[] cnt = new int[M+1];
         for (int i = 0; i < D; i++)
         {
-            cnt[cheese[i][1]]++;
-    
+            if (cheeseEat[cheese[i][1]][cheese[i][0]] == 0)
+            {
+                cheeseEat[cheese[i][1]][cheese[i][0]] = 1;
+                cnt[cheese[i][1]]++;
+            }
         }
 
         int ans = 0;
