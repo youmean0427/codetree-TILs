@@ -15,14 +15,20 @@ public class Main {
             g[i].a = sc.nextInt();
             g[i].b = sc.nextInt();
         }
-
+        Arrays.sort(g, 0, n, (g1, g2) -> Integer.compare(g1.a, g2.a));
         Arrays.sort(g, 0, n, (g1, g2) -> Integer.compare(g1.a + g1.b, g2.a + g2.b));
 
         int ans = 0;
         int cost = 0;
+        int cnt = 0;
         for (int i = 0; i < n; i++)
         {
+            cnt = 1;
             cost = g[i].a / 2 + g[i].b;
+            if (cost <= b)
+            {
+                ans =  Math.max(ans, cnt);
+            }
             for (int j = 0; j < n; j++)
             {
                 if (i == j)
@@ -31,10 +37,10 @@ public class Main {
                 }
                 
                 cost += g[j].a + g[j].b;
-
+                cnt++;
                 if (cost <= b)
                 {
-                    ans =  Math.max(ans, j+1);
+                    ans =  Math.max(ans, cnt);
                 }
             }
         }
