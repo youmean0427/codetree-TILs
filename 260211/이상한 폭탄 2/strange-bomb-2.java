@@ -10,7 +10,7 @@ public class Main {
             bombs[i] = sc.nextInt();
         }
 
-        int ans = 0;
+        int ans = -1;
         for (int i = 0; i < n; i++)
         {
             for (int j = i - k; j <= i; j++)
