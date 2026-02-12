@@ -19,7 +19,7 @@ public class Main {
         int max = Math.max(ta[n-1], tb[n-1]);
         int min = Math.min(ta[0], tb[0]);
         int ans = 0;
-        for (int i = min; i <= max; i++)
+        for (int i = min-1; i <= max+1; i++)
         {
             int work = 0;
             for (int j = 0; j < n; j++)
