@@ -5,7 +5,7 @@ public class Main {
         int T = sc.nextInt();
         int a = sc.nextInt();
         int b = sc.nextInt();
-        int[] arr = new int[b+1];
+        int[] arr = new int[1001];
         for (int i = 0; i < T; i++) {
             char c = sc.next().charAt(0);
             int pos = sc.nextInt();
