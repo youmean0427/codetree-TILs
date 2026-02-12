@@ -18,7 +18,7 @@ public class Main {
         {
             int d1 = Integer.MAX_VALUE;
             int d2 = Integer.MAX_VALUE;
-            for (int j = 1; j <= b; j++)
+            for (int j = 0; j <= 1000; j++)
             {
                 if (arr[j] == 83)
                 {
