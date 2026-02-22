@@ -35,7 +35,7 @@ public class Main {
                                     numCnt[(int)inp3.charAt(k) - 48]++;
                                     if (numCnt[i] > 0 && numCnt[j] > 0)
                                     {
-                                        ans++;
+                                        ans = 1;
                                     }
                                 }
                             }
@@ -56,7 +56,7 @@ public class Main {
                                 numCnt[(int)inp1.charAt(2) - 48]++;
                                 if (numCnt[i] > 0 && numCnt[j] > 0)
                                 {
-                                    ans++;
+                                    ans = 1;
                                 }
                             }
                         }
@@ -74,7 +74,7 @@ public class Main {
                                 numCnt[(int)inp2.charAt(2) - 48]++;
                                 if (numCnt[i] > 0 && numCnt[j] > 0)
                                 {
-                                    ans++;
+                                    ans = 1;
                                 }
                             }
                         }
@@ -92,7 +92,7 @@ public class Main {
                                 numCnt[(int)inp3.charAt(2) - 48]++;
                                 if (numCnt[i] > 0 && numCnt[j] > 0)
                                 {
-                                    ans++;
+                                    ans = 1;
                                 }
                             }
                         }
@@ -111,7 +111,7 @@ public class Main {
                                 numCnt[(int)inp3.charAt(2) - 48]++;
                                 if (numCnt[i] > 0 && numCnt[j] > 0)
                                 {
-                                    ans++;
+                                    ans = 1;
                                 }
                             }
                         }
@@ -129,7 +129,7 @@ public class Main {
                                 numCnt[(int)inp1.charAt(2) - 48]++;
                                 if (numCnt[i] > 0 && numCnt[j] > 0)
                                 {
-                                    ans++;
+                                    ans = 1;
                                 }
                             }
                         }
