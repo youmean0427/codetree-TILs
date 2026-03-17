@@ -18,17 +18,23 @@ public class Main {
             }
         }
         int ans = 0;
-        // 가로
 
+        // 가로
         for (int i = 0; i < n; i++)
         {
             int a = 0;
             int b = 0;
             int cnt = 1;
-            while (b < n-1)
+            int maxCnt = 0;
+            while (b < n)
             {
                 b++;
-
+                if (b == n)
+                {
+                    maxCnt = Math.max(maxCnt, cnt);
+                    break;
+                }
+                
                 if (arr[i][a] == arr[i][b])
                 {
                     cnt++;
@@ -37,9 +43,11 @@ public class Main {
                 else 
                 {
                     a = b;
+                    maxCnt = Math.max(maxCnt, cnt);
+                    cnt = 1;
                 }
             }
-            if (cnt >= m)
+            if (maxCnt >= m)
             {
                 ans++;
             }
@@ -51,9 +59,15 @@ public class Main {
             int a = 0;
             int b = 0;
             int cnt = 1;
-            while (b < n-1)
+            int maxCnt = 0;
+            while (b < n)
             {
                 b++;
+                if (b == n)
+                {
+                    maxCnt = Math.max(maxCnt, cnt);
+                    break;
+                }
 
                 if (arr[a][i] == arr[b][i])
                 {
@@ -63,9 +77,11 @@ public class Main {
                 else 
                 {
                     a = b;
+                    maxCnt = Math.max(maxCnt, cnt);
+                    cnt = 1;
                 }
             }
-            if (cnt >= m)
+            if (maxCnt >= m)
             {
                 ans++;
             }
