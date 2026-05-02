@@ -34,15 +34,17 @@ public class Main {
         {
             int startX = sc.nextInt() - 1;
             int startY = sc.nextInt() - 1;
-         
-            if (visited[startX][startY] == 0)
-            {
-                ans++;
-                visited[startX][startY] = 1;
-            }
+            visited[startX][startY] = 1;
             q.add(new Pair(startX, startY));
-            bfs();
+           
         }
+        bfs();
+
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                if(visited[i][j] == 1)
+                    ans++;
+
         System.out.print(ans);
     }
 
@@ -72,7 +74,6 @@ public class Main {
                 if (isRange(nextX, nextY) && canGo(nextX, nextY))
                 {
                         visited[nextX][nextY] = 1;
-                        ans++;
                         q.add(new Pair(nextX, nextY));
                 }
             }
