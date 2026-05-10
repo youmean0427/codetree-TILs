@@ -13,9 +13,9 @@ class Pair {
 }
 
 public class Main {
-    public static int[] select;
-    public static int bomb, n, ans;
-    public static List<Pair> list = new ArrayList<>();
+    public static int[] bombNum;
+    public static int bombCnt, n, ans;
+    public static List<Pair> bombPosition = new ArrayList<>();
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
@@ -27,14 +27,14 @@ public class Main {
                 grid[i][j] = sc.nextInt();
                 if (grid[i][j] == 1)
                 {
-                    bomb++;
+                    bombCnt++;
                     // 폭탄이 있는 위치
-                    list.add(new Pair(i, j));
+                    bombPosition.add(new Pair(i, j));
                 }
             }
         }
-        // list와 idx를 맞춰서 폭단 번호 매칭
-        select = new int[bomb+1];
+        // bombPosition와 idx를 맞춰서 폭단 번호 매칭
+        bombNum = new int[bombCnt];
         dfs(0);
         System.out.print(ans);
     }
@@ -42,52 +42,25 @@ public class Main {
 
     public static void bomb()
     {
-        int[][] visited = new int[n][n];
-        int[][] bombOne = new int[][]{{-1, 0}, {-2, 0}, {0, 0}, {1, 0}, {2, 0}};
-        int[][] bombTwo = new int[][]{{-1, 0}, {0, -1}, {0, 0}, {1, 0}, {0, 1}};
-        int[][] bombThree = new int[][]{{-1, -1}, {-1, 1}, {0, 0}, {1, 1}, {1, -1}};
+        int[][] bombed = new int[n][n];
+        int[][][] bombShape = new int[][][]{
+            {},
+            {{-1, 0}, {-2, 0}, {0, 0}, {1, 0}, {2, 0}},
+            {{-1, 0}, {0, -1}, {0, 0}, {1, 0}, {0, 1}},
+            {{-1, -1}, {-1, 1}, {0, 0}, {1, 1}, {1, -1}}
+        };
 
-        for (int i = 0; i < list.size(); i++)
+        for (int i = 0; i < bombPosition.size(); i++)
         {
-            Pair p = list.get(i);
-            if (select[i] == 1)
+            Pair p = bombPosition.get(i);
+            for (int idx = 0; idx < 5; idx++)
             {
-                for (int idx = 0; idx < 5; idx++)
-                {
-                    int nx = p.x + bombOne[idx][0];
-                    int ny = p.y + bombOne[idx][1];
+                int nx = p.x + bombShape[bombNum[i]][idx][0];
+                int ny = p.y + bombShape[bombNum[i]][idx][1];
 
-                    if (range(nx, ny))
-                    {
-                        visited[nx][ny] = 1;
-                    }
-                }
-            }
-            else if (select[i] == 2)
-            {
-                for (int idx = 0; idx < 5; idx++)
+                if (range(nx, ny))
                 {
-                    int nx = p.x + bombTwo[idx][0];
-                    int ny = p.y + bombTwo[idx][1];
-
-                    if (range(nx, ny))
-                    {
-                        visited[nx][ny] = 1;
-                    }
-                }             
-                
-            }
-            else
-            {
-                for (int idx = 0; idx < 5; idx++)
-                {
-                    int nx = p.x + bombThree[idx][0];
-                    int ny = p.y + bombThree[idx][1];
-
-                    if (range(nx, ny))
-                    {
-                        visited[nx][ny] = 1;
-                    }
+                    bombed[nx][ny] = 1;
                 }
             }
         }
@@ -97,7 +70,7 @@ public class Main {
         {
             for (int j = 0; j < n; j++)
             {
-                if (visited[i][j] == 1)
+                if (bombed[i][j] == 1)
                 {
                     cnt += 1;
                 }
@@ -113,7 +86,7 @@ public class Main {
 
     public static void dfs(int idx)
     {
-        if (idx >= bomb)
+        if (idx >= bombCnt)
         {
             bomb();
             return;
@@ -121,11 +94,11 @@ public class Main {
 
         for (int i = 1; i <= 3; i++)
         {
-            if (select[idx] == 0)
+            if (bombNum[idx] == 0)
             {
-                select[idx] = i;
+                bombNum[idx] = i;
                 dfs(idx+1);
-                select[idx] = 0;
+                bombNum[idx] = 0;
             }
         }
     }
