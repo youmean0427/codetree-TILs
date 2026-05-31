@@ -89,7 +89,7 @@ public class Main {
         }
 
         for (int i = minX2; i <= maxX2; i++) {
-            for (int j = minY2; j <= minY2; j++) {
+            for (int j = minY2; j <= maxY2; j++) {
                 sum += arr[i][j];
             }
         }
