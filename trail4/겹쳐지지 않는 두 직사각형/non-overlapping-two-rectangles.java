@@ -11,23 +11,11 @@ class Pair {
     }
 }
 
-class Rect {
-    int x1, y1, x2, y2;
-
-    Rect(Pair a, Pair b) {
-        this.x1 = Math.min(a.x, b.x);
-        this.x2 = Math.max(a.x, b.x);
-        this.y1 = Math.min(a.y, b.y);
-        this.y2 = Math.max(a.y, b.y);
-    }
-}
-
-
 public class Main {
     public static List<Pair> list = new ArrayList<>();
     public static List<Pair> chList = new ArrayList<>();
     public static int n, m, ans;
-    public static int[][] arr, visited;
+    public static int[][] arr;
 
     public static void main(String[] args) {
         ans = Integer.MIN_VALUE;
@@ -35,7 +23,6 @@ public class Main {
         n = sc.nextInt();
         m = sc.nextInt();
         arr = new int[n][m];
-        visited = new int[n][m];
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -53,56 +40,60 @@ public class Main {
             return;
         }
         for (int i = 0; i < list.size(); i++) {
-
             chList.add(list.get(i));
             dfs(cnt + 1);
             chList.remove(chList.size() - 1);
         }
-
     }
-
-    public static void clearVisited() {
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < m; j++)
-            {
-                visited[i][j] = 0;
-            }
-        }
-    }
-
 
     public static void cal() {
-        Rect r1 = new Rect(chList.get(0), chList.get(1));
-        Rect r2 = new Rect(chList.get(2), chList.get(3));
 
-        if (isOverlap(r1, r2)) {
+        int ax = chList.get(0).x;
+        int ay = chList.get(0).y;
+        int bx = chList.get(1).x;
+        int by = chList.get(1).y;
+        int cx = chList.get(2).x;
+        int cy = chList.get(2).y;
+        int dx = chList.get(3).x;
+        int dy = chList.get(3).y;
+
+        int minX1 = Math.min(ax, bx);
+        int maxX1 = Math.max(ax, bx);
+        int minY1 = Math.min(ay, by);
+        int maxY1 = Math.max(ay, by);
+        int minX2 = Math.min(cx, dx);
+        int maxX2 = Math.max(cx, dx);
+        int minY2 = Math.min(cy, dy);
+        int maxY2 = Math.max(cy, dy);
+
+        int overlap = 1;
+
+        if (maxX2 < minX1)
+            overlap = 0;
+        if (minX2 > maxX1)
+            overlap = 0;
+        if (minY2 > maxY1)
+            overlap = 0;
+        if (maxY2 < minY1)
+            overlap = 0;
+
+        if (overlap == 1)
             return;
-        }
 
         int sum = 0;
 
-        for (int i = r1.x1; i <= r1.x2; i++) {
-            for (int j = r1.y1; j <= r1.y2; j++) {
+        for (int i = minX1; i <= maxX1; i++) {
+            for (int j = minY1 ; j <= maxY1; j++) {
                 sum += arr[i][j];
             }
         }
 
-        for (int i = r2.x1; i <= r2.x2; i++) {
-            for (int j = r2.y1; j <= r2.y2; j++) {
+        for (int i = minX2; i <= maxX2; i++) {
+            for (int j = minY2; j <= minY2; j++) {
                 sum += arr[i][j];
             }
         }
-
         ans = Math.max(ans, sum);
     }
 
-    public static boolean isOverlap(Rect a, Rect b) {
-        if (a.x2 < b.x1) return false;
-        if (b.x2 < a.x1) return false;
-        if (a.y2 < b.y1) return false;
-        if (b.y2 < a.y1) return false;
-
-        return true;
-    }
 }
