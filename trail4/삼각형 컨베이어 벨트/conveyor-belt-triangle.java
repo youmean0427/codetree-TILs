@@ -17,17 +17,17 @@ public class Main {
 
         for (int j = 0; j < t; j++)
         {
-        int tmp = arr[nn - 1];
-        for (int i = nn - 1; i > 0; i--)
-        {
-            arr[i] = arr[i - 1];
+            int tmp = arr[nn - 1];
+            for (int i = nn - 1; i > 0; i--)
+            {
+                arr[i] = arr[i - 1];
+            }
+            arr[0] = tmp;
         }
-        arr[0] = tmp;
-        }
-        
+
         for (int i = 0; i < nn; i++)
         {       
-            if (i != 0 && i % 3 == 0)
+            if (i != 0 && i % n == 0)
                 System.out.println();
             System.out.print(arr[i] + " ");
       
