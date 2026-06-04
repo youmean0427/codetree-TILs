@@ -43,8 +43,8 @@ public class Main {
         for (int i = 0; i < q; i++)
         {
             move(winds[i].x, winds[i].d);
-            spreadUp(winds[i].x, winds[i].d);
-            spreadDown(winds[i].x, winds[i].d);
+            spread(winds[i].x, winds[i].d, 1);
+            spread(winds[i].x, winds[i].d, -1);
         }
 
         for (int i = 0; i < n; i++)
@@ -96,9 +96,10 @@ public class Main {
         return false;
     }
 
-    public static void spreadUp(int currIdx, char dir)
+    public static void spread(int currIdx, char dir, int num)
     {
-        if (currIdx >= n - 1)
+        int nextIdx = currIdx + num;
+        if (nextIdx >= n || nextIdx < 0)
         {
             return;
         }
@@ -108,32 +109,10 @@ public class Main {
         else if (dir == 'L')
             dir = 'R';
 
-        if (comp(currIdx, currIdx+1) == true)
+        if (comp(currIdx, nextIdx) == true)
         {
-            move(currIdx+1, dir);
-            spreadUp(currIdx+1, dir);
+            move(nextIdx, dir);
+            spread(nextIdx, dir, num);
         }
- 
-
-    }
-
-    public static void spreadDown(int currIdx, char dir)
-    {
-        if (currIdx <= 0)
-        {
-            return;
-        }
-        
-        if (dir == 'R')
-            dir = 'L';
-        else if (dir == 'L')
-            dir = 'R';
-
-        if (comp(currIdx, currIdx-1) == true)
-        {
-            move(currIdx-1, dir);
-            spreadDown(currIdx-1, dir);
-        }
-
     }
 }
