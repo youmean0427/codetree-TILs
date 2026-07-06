@@ -46,6 +46,18 @@ public class Main {
         }
     }
 
+    public static void temp_print()
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                System.out.print(temp[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void wind(int r1, int c1, int r2, int c2)
     {
         
@@ -70,7 +82,7 @@ public class Main {
         }
         
         avg(r1, c1, r2, c2);
-   
+        copy();
     }
 
     public static int can(int x, int y)
@@ -78,6 +90,18 @@ public class Main {
         if (0 <= x && x < n && 0 <= y && y < m)
             return 1;
         return 0;
+    }
+
+    public static void copy()
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                temp[i][j] = arr[i][j];
+            }
+        }
+
     }
 
     public static void avg(int r1, int c1, int r2, int c2)
@@ -98,7 +122,7 @@ public class Main {
                         cnt++;
                     }
                 }
-                arr[i][j] = sum/cnt;
+                arr[i][j] = (int)(sum/cnt);
             }
         }
     }
