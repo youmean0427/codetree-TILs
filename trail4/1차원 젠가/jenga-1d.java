@@ -24,6 +24,10 @@ public class Main {
 
         jenga(s1, e1);
         copy();
+        for (int i = 0; i < n; i++)
+        {
+            temp[i] = 0;
+        }
         jenga(s2, e2);
         copy();
 
