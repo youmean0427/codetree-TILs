@@ -49,7 +49,7 @@ public class Main {
     {
         if (cnt >= m)
         {
-            move(list);
+            move(new ArrayList<>(list));
             return;
         }
         
@@ -63,7 +63,7 @@ public class Main {
     public static void move(List<Input> chList)
     {
         int[] result = new int[n+1];
-        chList.sort((cha, chb) -> cha.c - chb.c );
+        chList.sort((cha, chb) -> cha.c - chb.c);
 
         for (int num = 1; num <= n; num++)
         {
