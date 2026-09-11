@@ -9,7 +9,7 @@ public class Main {
         arr = new int[n];
         minJump = Integer.MAX_VALUE;
         ans = -1;
-        visited = new int[n];
+        visited = new int[n+3];
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
