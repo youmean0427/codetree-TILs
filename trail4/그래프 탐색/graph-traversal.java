@@ -2,37 +2,35 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
-   
+    
+    public static int n, m, ans;
+    public static ArrayList<Integer>[] arr;
     public static int[] visited;
-    public static int[][] arr;
-    public static int n;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        int m = sc.nextInt();
-
+        m = sc.nextInt();
         visited = new int[n+1];
-        arr = new int[n+1][n+1];
-        for (int i = 0; i < m; i++)
-        {  
+
+        // ArrayList 형식을 가진 List 생성
+        arr = new ArrayList[n+1];
+        // ArrayList 객체를 원소로 생성
+        for (int i = 0; i < n+1; i++)
+        {
+            arr[i] = new ArrayList<>();
+        }
+
+
+        for ( int i = 0; i < m; i++)
+        {
             int x = sc.nextInt();
             int y = sc.nextInt();
-
-            arr[x][y] = 1;
-            arr[y][x] = 1;
-
+            
+            arr[x].add(y);
+            arr[y].add(x);
         }
         
         dfs(1);
-
-        int ans = 0;
-        for (int i = 2; i < n+1; i++)
-        {
-            if (visited[i] == 1)
-            {
-                ans++;
-            }
-        }
         System.out.print(ans);
     }
 
@@ -40,12 +38,15 @@ public class Main {
     {
         visited[idx] = 1;
 
-        for (int i = 0; i < n+1; i++)
+        for (int i = 0; i < arr[idx].size(); i++)
         {
-            if (arr[idx][i] == 1 && visited[i] == 0)
+            int g = arr[idx].get(i);
+            
+            if (visited[g] == 0)
             {
-                dfs(i);
+                ans++;
+                dfs(g);
             }
-        }
+        }        
     }
 }
