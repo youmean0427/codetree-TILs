@@ -13,7 +13,7 @@ public class Main {
         int waterMax = 0;
 
         int ansTown = 0;
-        int ansWater = 0;
+        int ansWater = 1;
 
         for (int i = 0; i < n; i++)
         {
