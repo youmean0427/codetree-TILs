@@ -53,7 +53,7 @@ public class Main {
                 }
             }
 
-            if (ansTown < town || (ansTown == town && w < ansWater))
+            if (ansTown < town)
             {
                 ansWater = w;
                 ansTown = town;
