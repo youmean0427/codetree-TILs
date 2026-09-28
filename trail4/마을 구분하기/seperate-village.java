@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 class Pos {
     int x;
@@ -18,16 +19,19 @@ public class Main {
     public static int[][] map, visited;
     public static ArrayList<Integer> ans = new ArrayList<>();
     public static ArrayList<Pos> arr = new ArrayList<>();
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
+    public static void main (String[] args) throws IOException{
+        BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(br.readLine());
+
+        StringTokenizer st;
         map = new int[n][n];
         visited = new int[n][n];
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++){
+        
+            st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++)
             {
-                map[i][j] = sc.nextInt();
+                map[i][j] = Integer.parseInt(st.nextToken());
                 if (map[i][j] == 1)
                 {
                     arr.add(new Pos(i, j));
