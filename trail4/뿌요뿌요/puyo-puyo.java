@@ -23,6 +23,7 @@ public class Main {
         {
             for (int j = 0; j < n; j++)
             {
+                total = 0;
                 if (visited[i][j] == 0)
                 {   
                     visited[i][j] = 1;
@@ -33,8 +34,8 @@ public class Main {
                 }
             }
         }
-        System.out.print(cnt + " " + ans);
-
+        System.out.println(cnt + " " + ans);
+        
     }
     public static int isRange(int x, int y)
     {
@@ -47,7 +48,7 @@ public class Main {
 
     public static void dfs(int x, int y, int num, int sum)
     {
-        total = sum;
+        total++;
         int[][] pos = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         for (int idx = 0; idx < 4; idx++)
         {
@@ -58,7 +59,7 @@ public class Main {
             {
                 if (visited[nx][ny] == 0 && arr[nx][ny] == num)
                 {
-                    visited[nx][ny] = visited[x][y] + 1;
+                    visited[nx][ny] = 1;
                     dfs(nx, ny, num, sum+1);
                     
                 }
