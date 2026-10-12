@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.*;
 
 class Pos {
@@ -13,9 +12,9 @@ class Pos {
 }
 
 public class Main {
-    public static Queue<Pos> q = new LinkedList<>();
-    public static int n, m;
+    public static Deque<Pos> dq = new ArrayDeque<>();
     public static int[][] grid, visited;
+    public static int n, m;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
@@ -25,43 +24,33 @@ public class Main {
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
                 grid[i][j] = sc.nextInt();
-
-        visited[0][0] = 1;
-        q.offer(new Pos(0, 0));
-        bfs();
         
-        if (visited[n-1][m-1] == 1)
-            System.out.print(1);
-        else
-            System.out.print(0);
-    }
-
-    public static boolean isRange(int x, int y)
-    {
-        if (x >= 0 && x < n && y >= 0 && y < m)
-            return true;
-        return false;
+        dq.offer(new Pos(0, 0));
+        bfs();
+        System.out.print(visited[n-1][m-1]);
     }
 
     public static void bfs()
     {
-        while (!q.isEmpty())
+        while (!dq.isEmpty())
         {
-            Pos qp = q.poll();
-            int x = qp.x;
-            int y = qp.y;
+            Pos p = dq.poll();
+            int x = p.x;
+            int y = p.y;
 
-            int[][] move = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-
+            int[][] position = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
             for (int i = 0; i < 4; i++)
             {
-                int nx = x + move[i][0];
-                int ny = y + move[i][1];
-
-                if (isRange(nx, ny) && grid[nx][ny] == 1 && visited[nx][ny] == 0)
+                int nx = x + position[i][0];
+                int ny = y + position[i][1];
+                
+                if (0 <= nx && nx < n && 0 <= ny && ny < m)
                 {
-                    visited[nx][ny] = 1;
-                    q.offer(new Pos(nx, ny));
+                    if (visited[nx][ny] == 0 && grid[nx][ny] == 1)
+                    {
+                        visited[nx][ny] = 1;
+                        dq.offer(new Pos(nx, ny));
+                    }
                 }
             }
         }
