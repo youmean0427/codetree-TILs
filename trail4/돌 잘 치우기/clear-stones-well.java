@@ -113,7 +113,7 @@ public class Main {
             int nx = stones.get(i).x;
             int ny = stones.get(i).y;
             removeStones.add(new Pos(nx, ny));
-            dfs(cnt+1, startIdx+1);
+            dfs(cnt+1, i+1);
             removeStones.remove(removeStones.size()-1);
         }
     }
