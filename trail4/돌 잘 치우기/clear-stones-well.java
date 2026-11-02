@@ -45,7 +45,7 @@ public class Main {
             starts.add(new Pos(sc.nextInt()-1, sc.nextInt()-1));
         }
 
-        dfs(0);
+        dfs(0, 0);
         System.out.print(ans);
 
     }
@@ -89,7 +89,7 @@ public class Main {
     }
 
 
-    public static void dfs(int cnt)
+    public static void dfs(int cnt, int startIdx)
     {
         if (cnt >= m)
         {
@@ -107,12 +107,12 @@ public class Main {
             return;
         }
         
-        for (int i = 0; i < stones.size(); i++)
+        for (int i = startIdx; i < stones.size(); i++)
         {
             int nx = stones.get(i).x;
             int ny = stones.get(i).y;
             removeStones.add(new Pos(nx, ny));
-            dfs(cnt+1);
+            dfs(cnt+1, startIdx+1);
             removeStones.remove(removeStones.size()-1);
         }
     }
