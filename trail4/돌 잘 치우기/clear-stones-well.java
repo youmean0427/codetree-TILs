@@ -56,6 +56,7 @@ public class Main {
         Deque<Pos> dq = new ArrayDeque<>();
         int cnt = 0;
         int[][] visited = new int[n][n];
+        int[][] movement = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         for (int j = 0; j < starts.size(); j++)
         {
             cnt++;
@@ -66,7 +67,7 @@ public class Main {
         while (!dq.isEmpty())
         {
             Pos dqp = dq.poll();
-            int[][] movement = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+            
             
             for (int m = 0; m < 4; m++)
             {
